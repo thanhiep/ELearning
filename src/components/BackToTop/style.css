@@ -1,0 +1,18 @@
+.backToTop{
+    position: fixed;
+    z-index: 99;
+    right: 20px;
+    bottom: 20px;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    color: #fff;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #41b294;
+    transition: 0.5s;
+}
+
+.backToTop:hover{
+    transform: translateY(-5px);
+}
