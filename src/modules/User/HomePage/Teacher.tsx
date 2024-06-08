@@ -10,7 +10,7 @@ export default function Teacher() {
             <Row>
                 <Col xs={24} sm={12} md={8} lg={4}>
                     <div className="teacherContent">
-                        <img src="./../../../public/img/instrutor5.jpg" alt="" />
+                        <img src="img/instrutor5.jpg" alt="" />
                         <h6>Big DadMon</h6>
                         <div className="textReviewRole">
                             <p>Chuyên gia lĩnh vực</p>
@@ -29,8 +29,8 @@ export default function Teacher() {
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={4}>
                     <div className="teacherContent">
-                        <img src="./../../../public/img/instrutor6.jpg" alt="" />
-                        <h6>Big DadMon</h6>
+                        <img src="img/instrutor6.jpg" alt="" />
+                        <h6>IcarDi MenBor</h6>
                         <div className="textReviewRole">
                             <p>Chuyên gia ngôn ngữ</p>
                             <p>VueJs</p>
@@ -48,8 +48,8 @@ export default function Teacher() {
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={4}>
                     <div className="teacherContent">
-                        <img src="./../../../public/img/instrutor7.jpg" alt="" />
-                        <h6>Big DadMon</h6>
+                        <img src="img/instrutor7.jpg" alt="" />
+                        <h6>Bladin Slaham</h6>
                         <div className="textReviewRole">
                             <p>Chuyên gia hệ thống</p>
                             <p>máy tính</p>
@@ -67,8 +67,8 @@ export default function Teacher() {
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={4}>
                     <div className="teacherContent">
-                        <img src="./../../../public/img/instrutor8.jpg" alt="" />
-                        <h6>Big DadMon</h6>
+                        <img src="img/instrutor8.jpg" alt="" />
+                        <h6>Chris Andersan</h6>
                         <div className="textReviewRole">
                             <p>Chuyên gia lĩnh vực</p>
                             <p>Full Skill</p>
@@ -86,8 +86,8 @@ export default function Teacher() {
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={4}>
                     <div className="teacherContent">
-                        <img src="./../../../public/img/instrutor9.jpg" alt="" />
-                        <h6>Big DadMon</h6>
+                        <img src="img/instrutor9.jpg" alt="" />
+                        <h6>VueLo Gadi</h6>
                         <div className="textReviewRole">
                             <p>Chuyên gia lĩnh vực</p>
                             <p>phân tích</p>
@@ -105,8 +105,8 @@ export default function Teacher() {
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={4}>
                     <div className="teacherContent">
-                        <img src="./../../../public/img/instrutor10.jpg" alt="" />
-                        <h6>Big DadMon</h6>
+                        <img src="img/instrutor10.jpg" alt="" />
+                        <h6>Hoàng Nam</h6>
                         <div className="textReviewRole">
                             <p>Chuyên gia lĩnh vực</p>
                             <p>PHP</p>

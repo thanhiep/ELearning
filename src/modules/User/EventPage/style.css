@@ -1,0 +1,236 @@
+.eventBanner {
+    position: relative;
+    background-image: url(img/event/backroundTech.jpg);
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-size: cover;
+    filter: grayscale(50%);
+}
+
+.eventBanner::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-image: url(img/event/high-techbrain.png);
+    background-repeat: no-repeat;
+    background-position: 100%;
+    background-size: contain;
+}
+
+.eventTime {
+    position: relative;
+    z-index: 20;
+    padding: 200px 50px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.eventCountDown{
+    display: flex;
+}
+
+.eventCountDown .time{
+    padding-right: 50px;
+}
+
+.eventCountDown .time p {
+    text-align: center;
+    line-height: 30px;
+    font-size: 60px;
+    font-weight: 600;
+}
+
+.eventCountDown .time p small{
+    font-size: 20px;
+}
+
+.eventDay {
+    color: #ffbe0b;
+}
+
+.eventHours {
+    color: #fb5607;
+}
+
+.eventMins {
+    color: #ff006e;
+}
+
+.eventSecs{
+    color: #8338ec;
+}
+
+.eventTime h4 {
+    font-size: 40px;
+    padding: 10px 0;
+    font-weight: 600;
+}
+
+.eventTime h6 {
+    font-size: 18px;
+}
+
+.eventImg {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.eventImg .eventImgAni {
+    animation: upAndDown 3s linear infinite;
+}
+
+.eventImg img {
+    width: 100%;
+    height: 270px;
+    object-fit: contain;
+}
+
+.eventDetail{
+    padding: 50px;
+}
+
+.eventInfo h5 {
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    color: #9f1f56;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.eventInfo h6{
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.eventInfo p{
+    padding: 20px 0;
+    color: #8c8c8c;
+    font-size: 18px;
+}
+
+.globalBtn{
+    color: white;
+    text-transform: uppercase;
+    transition: 0.2s;
+    font-weight: 600;
+}
+
+.joinBtn{
+    background-color: #41b294;
+    border: 1px solid #41b294;
+    margin-right: 20px;
+}
+
+.joinBtn:hover{
+    background-color: white !important;
+    color: #41b294 !important;
+    border-color: #41b294 !important;
+    transform: scale(1.04);
+}
+
+.learnBtn{
+    background-color: #f6ba35; 
+    border: 1px solid #f6ba35;
+}
+
+.learnBtn:hover{
+    background-color: white !important;
+    color: #f6ba35 !important;
+    border-color: #f6ba35 !important;
+    transform: scale(1.04);
+}
+
+.speecher {
+    position: relative;
+    z-index: 1;
+    padding: 50px;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(img/event/lightTech.jpg);
+}
+
+.speecher:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(124, 121, 122, .5), rgba(111, 183, 241, .5) 100%);
+}
+
+.speechDetail, .speecher>h6{
+    position: relative;
+    z-index: 10;
+}
+
+.speecher>h6, .donors>h6 {
+    text-align: center;
+    padding: 20px;
+    font-size: 30px;
+    color: #f6ba35;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.speecherCard {
+    display: flex;
+    flex-direction: column;
+    min-width: 280px;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.speecherCard h6 {
+    padding: 5px 0;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.speecherCard p{
+    font-size: 18px;
+}
+
+.donors {
+    padding: 100px 50px;
+}
+
+.donorsItem {
+    text-align: center;
+    padding: 10px;
+}
+
+.donorsItem img {
+    object-fit: cover;
+    border-radius: 10px;
+    width: 100%;
+    height: 220px;
+    min-height: 220px;
+}
+
+.donorsItem p {
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+@keyframes upAndDown {
+    0%{
+        transform: translateY(-15px);
+    }
+    50%{
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(-15px);
+    }
+}

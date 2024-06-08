@@ -8,7 +8,7 @@ export default function Review() {
                 <Col xs={24} lg={8}>
                     <div className="reviewImg">
                         <div className="bgStudentReview"></div>
-                        <img src="./../../../public/img/avatarReview.png" alt="" />
+                        <img src="img/avatarReview.png" alt="" />
                     </div>
                 </Col>
                 <Col xs={24} lg={16} className="quoteRight">

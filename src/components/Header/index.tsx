@@ -70,7 +70,7 @@ export default function HeaderComponent() {
     <div className={`header ${isScrolled ? "headerScroll" : ""}`}>
       <div className="nav container mx-auto">
         <NavLink to={"/"}>
-          <img className="logo" src="./../../img/logoelearning.png" />
+          <img className="logo" src="img/logoelearning.png" />
         </NavLink>
 
         <ul className="nav-bar">
@@ -104,7 +104,7 @@ export default function HeaderComponent() {
           <li className="nav-item">
             <Dropdown dropdownRender={() => dropdownSuKien}>
               <NavLink
-                to={"/"}
+                to={"/event"}
                 className={({ isActive }) => (isActive ? "my-active" : "")}
               >
                 sự kiện
@@ -152,7 +152,7 @@ export default function HeaderComponent() {
           </NavLink>
           <li className="nav-item eventHeaderMobie courseCateMobie">
             <NavLink
-              to={"/"}
+              to={"/event"}
               className={({ isActive }) => (isActive ? "my-active-mobie" : "")}
             >
               sự kiện

@@ -6,6 +6,7 @@ import ClassList from "../modules/User/ClassList";
 import KhoaHocDanhMuc from "../modules/User/KhoaHocDanhMuc";
 import AboutPage from "../modules/User/AboutPage";
 import BlogPage from "../modules/User/BlogPage";
+import EventPage from "../modules/User/EventPage";
 
 const userRouteElement = () => {
     const element = useRoutes([
@@ -36,6 +37,10 @@ const userRouteElement = () => {
                 {
                     path:"/blog",
                     element:<BlogPage/>
+                },
+                {
+                    path:"/event",
+                    element: <EventPage/>
                 }
             ]
         }

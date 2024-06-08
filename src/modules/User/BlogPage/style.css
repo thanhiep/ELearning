@@ -1,0 +1,150 @@
+.blogTitle {
+    padding: 50px;
+    text-transform: uppercase;
+    background-color: #41b294;
+    color: white;
+    text-align: center;
+}
+
+.blogTitle h3{
+    font-size: 1.75rem;
+}
+
+.blogCourseContainer {
+    padding: 20px 50px;
+}
+
+.blogCourseContainer>h6 {
+    padding: 20px 0;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.blogCourseContainer h6 .hornIcon{
+    color: #ed85ab;
+    padding-right: 10px;
+    font-size: 20px;
+}
+
+.blogItemLeft {
+    padding: 0 30px 0 0;
+}
+
+.blogCard{
+    padding: 30px;
+}
+
+.blogCardContent {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: all 1s;
+}
+
+.blogCardImg{
+    overflow: hidden;
+}
+
+.blogCardImg img {
+    object-fit: cover;
+    width: 100%;
+    height: 302px;
+    min-height: 302px;
+}
+
+.blogCardContent h6 {
+    font-size: 20px;
+    padding: 10px 0;
+    font-weight: 600;
+}
+
+.blogStatus {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+.blogReview span{
+    margin-right: 10px;
+}
+
+.blogReview span .svg-inline--fa {
+    color: #41b294;
+    margin-right: 5px;
+}
+
+.blogStatus p span {
+    color: #ed85ab;
+}
+
+.blogContentText{
+    padding: 10px 0;
+    font-size: 16px;
+    color: #8c8c8c;
+}
+
+.blogBtn{
+    width: 100px;
+    background-color: #f6ba35;
+    border: 1px solid #f6ba35;
+    transition: 0.2s;
+    font-weight: 600;
+}
+
+.blogBtn:hover{
+    background-color: white;
+    border: 1px solid #f6ba35 !important;
+    color: #f6ba35 !important;
+}
+
+.blogRightBox {
+    border: 1px solid #d0d0d0;
+    margin-bottom: 30px;
+    border-top: 3px solid #41b294;
+}
+
+.blogRightBox>h6 {
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #d0d0d0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.blogRightBox ul li {
+    padding: 10px 20px;
+}
+
+.blogRightBox ul li a {
+    display: block;
+    color: #8c8c8c;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.blogRightBox ul li a:hover {
+    color: #41b294;
+    transform: translateY(-3px);
+}
+
+.blogPost {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.blogPost>h6{
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.blogPost .imgPost img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+

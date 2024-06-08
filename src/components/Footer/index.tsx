@@ -107,7 +107,7 @@ export default function Footer() {
         <div className="container mx-auto">
           <div className="extraFooterContent">
             <div className="copyright">
-              <p>Copyright © 2021. All rights reserved.</p>
+              <p>Copyright © 2024. All rights reserved.</p>
             </div>
             <div>
               <span className="iconSocial">

@@ -10,7 +10,7 @@ export default function CountUpComponent() {
             <div className="countUpItem">
               <img
                 className="countUpImg"
-                src="./../../../public/img/003-students.png"
+                src="/img/003-students.png"
                 alt=""
               />
               <div className="countUpText">
@@ -26,7 +26,7 @@ export default function CountUpComponent() {
             <div className="countUpItem">
               <img
                 className="countUpImg"
-                src="./../../../public/img/001-timetable.png"
+                src="img/001-timetable.png"
                 alt=""
               />
               <div className="countUpText">
@@ -42,7 +42,7 @@ export default function CountUpComponent() {
             <div className="countUpItem">
               <img
                 className="countUpImg"
-                src="./../../../public/img/002-hourglass.png"
+                src="img/002-hourglass.png"
                 alt=""
               />
               <div className="countUpText">
@@ -58,7 +58,7 @@ export default function CountUpComponent() {
             <div className="countUpItem">
               <img
                 className="countUpImg"
-                src="./../../../public/img/004-teacher.png"
+                src="img/004-teacher.png"
                 alt=""
               />
               <div className="countUpText">
