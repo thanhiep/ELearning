@@ -8,7 +8,7 @@ import { faComment, faEye, faThumbsUp } from "@fortawesome/free-regular-svg-icon
 export default function BlogPage() {
   return (
     <div className="blogCourse">
-      <div className="blogTitle">
+      <div className="pageTitle">
         <h3>Blog</h3>
         <p>Thông tin công nghệ số</p>
       </div>

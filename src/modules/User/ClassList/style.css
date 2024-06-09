@@ -1,0 +1,79 @@
+.coursesContainer {
+    padding: 50px;
+}
+
+.bgStyle1 {
+    background: #264653;
+}
+
+.bgStyle2 {
+    background: #2a9d8f;
+}
+
+.bgStyle3 {
+    background: #e9c46a;
+}
+
+.bgStyle4 {
+    background: #f4a261;
+}
+
+.bgStyle5 {
+    background: #ee8959;
+}
+
+.bgStyle6 {
+    background: #e76f51;
+}
+
+.coursesBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    height: 100%;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.coursesBox h6, .coursesBox .svg-inline--fa {
+    padding-bottom: 10px;
+}
+
+.coursesBox .svg-inline--fa{
+    font-size: 30px;
+}
+
+.courseListPage h6, .coursesBox p {
+    font-size: 20px;
+}
+
+.titleClassList{
+    text-transform: uppercase;
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.paginationClassList{
+   display: flex;
+   justify-content: center;
+   margin: 30px 0;
+}
+
+.ant-pagination-item{
+    border: 2px solid #2a9d8f !important;
+    font-size: 16px !important;
+    height: 35px !important;
+}
+
+.ant-pagination-item-active{
+    background-color: #2a9d8f !important;
+}
+
+.ant-pagination-item-active a{
+    color: white !important;
+}

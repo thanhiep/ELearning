@@ -35,7 +35,7 @@ export default function Class(props: Props) {
             title={<span className="card-title">{khoa.tenKhoaHoc}</span>}
             description={
               <Text ellipsis>
-                <span>{khoa.moTa}</span>
+                <span style={{color:"#8c8c8c"}}>{khoa.moTa}</span>
               </Text>
             }
           />

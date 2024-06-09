@@ -47,19 +47,20 @@ export default function Footer() {
             <ul className="menuFooter">
               <li>
                 <FontAwesomeIcon icon={faAngleRight} />
-                <span>Trang chủ</span>
+                <Link to={"/"}><span>Trang chủ</span></Link>
+                
               </li>
               <li>
                 <FontAwesomeIcon icon={faAngleRight} />
-                <span>Sự kiện</span>
+                <Link to={"/event"}><span>Sự kiện</span></Link>
               </li>
               <li>
                 <FontAwesomeIcon icon={faAngleRight} />
-                <span>Thông tin</span>
+                <Link to={"/about"}><span>Thông tin</span></Link>
               </li>
               <li>
                 <FontAwesomeIcon icon={faAngleRight} />
-                <span>Blog</span>
+                <Link to={"/blog"}><span>Blog</span></Link>
               </li>
             </ul>
           </Col>

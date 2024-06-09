@@ -1,3 +1,11 @@
+export interface KhoaHocPagination {
+  currentPage: number;
+  count:       number;
+  totalPages:  number;
+  totalCount:  number;
+  items:       KhoaHoc[];
+}
+
 export interface KhoaHoc {
   maKhoaHoc: string;
   biDanh: string;

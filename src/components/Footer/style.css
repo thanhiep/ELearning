@@ -52,6 +52,10 @@
     color: #41b294;
 }
 
+.menuFooter li:hover a{
+    color: #41b294;
+}
+
 .iconFooter {
   display: inline-block;
   margin-left: 10px;

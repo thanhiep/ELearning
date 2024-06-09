@@ -13,3 +13,15 @@ body{
   font-family: "Roboto", sans-serif;
   color: #252525;
 }
+
+.pageTitle {
+  padding: 50px;
+  text-transform: uppercase;
+  background-color: #41b294;
+  color: white;
+  text-align: center;
+}
+
+.pageTitle h3{
+  font-size: 1.75rem;
+}

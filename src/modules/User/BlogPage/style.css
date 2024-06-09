@@ -1,15 +1,3 @@
-.blogTitle {
-    padding: 50px;
-    text-transform: uppercase;
-    background-color: #41b294;
-    color: white;
-    text-align: center;
-}
-
-.blogTitle h3{
-    font-size: 1.75rem;
-}
-
 .blogCourseContainer {
     padding: 20px 50px;
 }
