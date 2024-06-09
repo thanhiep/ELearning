@@ -7,7 +7,7 @@ export default function Banner() {
         <div className="textLeft">
           <img
             className="planeSlide"
-            src="img/plane.png"
+            src="./../../../../img/plane.png"
             alt="plane"
           ></img>
           <h1>
@@ -24,32 +24,32 @@ export default function Banner() {
       <Col xs={24} lg={12}>
         <div className="bannerRight">
           <img
-            src="img/bannerelearning.png"
+            src="./../../../../img/bannerelearning.png"
             alt="banner"
             className="w-full"
           />
           <img
-            src="img/code_slider.png"
+            src="./../../../../img/code_slider.png"
             alt="code_slider"
             className="sliderSubImg codeSlider"
           />
           <img
-            src="img/message_slider.png"
+            src="./../../../../img/message_slider.png"
             alt="message_slider"
             className="sliderSubImg messSlider"
           />
           <img
-            src="img/cloud.png"
+            src="./../../../../img/cloud.png"
             alt="cloud"
             className="sliderSubImg cloudSlider"
           />
           <img
-            src="img/cloud.png"
+            src="./../../../../img/cloud.png"
             alt="cloud"
             className="sliderSubImg cloudSlider2"
           />
           <img
-            src="img/cloud.png"
+            src="./../../../../img/cloud.png"
             alt="cloud"
             className="sliderSubImg cloudSlider3"
           />

@@ -27,7 +27,7 @@ export default function BlogPage() {
                     <div className="blogCard">
                       <div className="blogCardContent">
                         <div className="blogCardImg">
-                          <img src="img/blog/blog1.webp" alt="" />
+                          <img src="./../../../../img/blog/blog1.webp" alt="" />
                         </div>
                         <h6>Thời gian và động lực</h6>
                         <div className="blogStatus">
@@ -58,7 +58,7 @@ export default function BlogPage() {
                     <div className="blogCard">
                       <div className="blogCardContent">
                         <div className="blogCardImg">
-                          <img src="img/blog/blog2.jpg" alt="" />
+                          <img src="./../../../../img/blog/blog2.jpg" alt="" />
                         </div>
                         <h6>Tailwind CSS và cách cài đặt cơ bản</h6>
                         <div className="blogStatus">
@@ -89,7 +89,7 @@ export default function BlogPage() {
                     <div className="blogCard">
                       <div className="blogCardContent">
                         <div className="blogCardImg">
-                          <img src="img/blog/blog3.jpg" alt="" />
+                          <img src="./../../../../img/blog/blog3.jpg" alt="" />
                         </div>
                         <h6>Cấu trúc cơ bản trong HTML</h6>
                         <div className="blogStatus">
@@ -120,7 +120,7 @@ export default function BlogPage() {
                     <div className="blogCard">
                       <div className="blogCardContent">
                         <div className="blogCardImg">
-                          <img src="img/blog/blog4.jpg" alt="" />
+                          <img src="./../../../../img/blog/blog4.jpg" alt="" />
                         </div>
                         <h6>Material UI custom theme với TypeScript</h6>
                         <div className="blogStatus">
@@ -151,7 +151,7 @@ export default function BlogPage() {
                     <div className="blogCard">
                       <div className="blogCardContent">
                         <div className="blogCardImg">
-                          <img src="img/blog/blog5.png" alt="" />
+                          <img src="./../../../../img/blog/blog5.png" alt="" />
                         </div>
                         <h6>Cách tạo một component nhanh chóng</h6>
                         <div className="blogStatus">
@@ -182,7 +182,7 @@ export default function BlogPage() {
                     <div className="blogCard">
                       <div className="blogCardContent">
                         <div className="blogCardImg">
-                          <img src="img/blog/blog6.png" alt="" />
+                          <img src="./../../../../img/blog/blog6.png" alt="" />
                         </div>
                         <h6>Ant Design cơ bản</h6>
                         <div className="blogStatus">
@@ -213,7 +213,7 @@ export default function BlogPage() {
                     <div className="blogCard">
                       <div className="blogCardContent">
                         <div className="blogCardImg">
-                          <img src="img/blog/blog7.png" alt="" />
+                          <img src="./../../../../img/blog/blog7.png" alt="" />
                         </div>
                         <h6>Bất đồng bộ trong Javascript</h6>
                         <div className="blogStatus">
@@ -244,7 +244,7 @@ export default function BlogPage() {
                     <div className="blogCard">
                       <div className="blogCardContent">
                         <div className="blogCardImg">
-                          <img src="img/blog/blog8.webp" alt="" />
+                          <img src="./../../../../img/blog/blog8.webp" alt="" />
                         </div>
                         <h6>Typescript là gì và ứng dụng</h6>
                         <div className="blogStatus">
@@ -298,7 +298,7 @@ export default function BlogPage() {
                     Chúng ta sẽ cùng nhau tìm hiểu cách routing trong reactjs...
                     </p>
                     <div className="imgPost">
-                      <img src="img/instrutor10.jpg" alt="" />
+                      <img src="./../../../../img/instrutor10.jpg" alt="" />
                       <span className="blogContentText">Nguyên Văn</span>
                     </div>
                   </div>
@@ -308,7 +308,7 @@ export default function BlogPage() {
                     Chúng ta sẽ cùng nhau tìm hiểu oop trong reactjs...
                     </p>
                     <div className="imgPost">
-                      <img src="img/instrutor12.jpg" alt="" />
+                      <img src="./../../../../img/instrutor12.jpg" alt="" />
                       <span className="blogContentText">Vũ Nguyên Văn</span>
                     </div>
                   </div>
@@ -318,7 +318,7 @@ export default function BlogPage() {
                     Chắc chắn khi lập trình, bạn sẽ có các công việc cần thời gian delay (gọi API, lấy dữ liệu từ Database, đọc/ghi file,...). Và đây...
                     </p>
                     <div className="imgPost">
-                      <img src="img/instrutor11.jpg" alt="" />
+                      <img src="./../../../../img/instrutor11.jpg" alt="" />
                       <span className="blogContentText">Nguyên Minh</span>
                     </div>
                   </div>

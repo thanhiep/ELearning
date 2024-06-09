@@ -41,7 +41,7 @@ export default function EventPage() {
           <Col xs={24} md={12} className="eventImg">
             <img
               className="eventImgAni"
-              src="img/event/it.png"
+              src="./../../../../img/event/it.png"
               alt=""
             />
           </Col>
@@ -65,56 +65,56 @@ export default function EventPage() {
         <Row className="speechDetail" gutter={40}>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <div className="speecherCard">
-                    <img src="img/instrutor5.jpg" alt="" />
+                    <img src="./../../../../img/instrutor5.jpg" alt="" />
                     <h6>Nguyễn Nhật</h6>
                     <p>CEO TechViet Production</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <div className="speecherCard">
-                    <img src="img/instrutor6.jpg" alt="" />
+                    <img src="./../../../../img/instrutor6.jpg" alt="" />
                     <h6>Nguyễn Nhật</h6>
                     <p>CEO TechViet Production</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <div className="speecherCard">
-                    <img src="img/instrutor7.jpg" alt="" />
+                    <img src="./../../../../img/instrutor7.jpg" alt="" />
                     <h6>Nguyễn Nam</h6>
                     <p>CEO TechViet Production</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <div className="speecherCard">
-                    <img src="img/instrutor8.jpg" alt="" />
+                    <img src="./../../../../img/instrutor8.jpg" alt="" />
                     <h6>Long Le</h6>
                     <p>CEO TechViet Production</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <div className="speecherCard">
-                    <img src="img/instrutor9.jpg" alt="" />
+                    <img src="./../../../../img/instrutor9.jpg" alt="" />
                     <h6>Johny Musk</h6>
                     <p>CEO TechViet Production</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <div className="speecherCard">
-                    <img src="img/instrutor10.jpg" alt="" />
+                    <img src="./../../../../img/instrutor10.jpg" alt="" />
                     <h6>Vương Phạm</h6>
                     <p>CEO TechViet Production</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <div className="speecherCard">
-                    <img src="img/instrutor11.jpg" alt="" />
+                    <img src="./../../../../img/instrutor11.jpg" alt="" />
                     <h6>Jessica Dao</h6>
                     <p>CEO TechViet Production</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <div className="speecherCard">
-                    <img src="img/instrutor12.jpg" alt="" />
+                    <img src="./../../../../img/instrutor12.jpg" alt="" />
                     <h6>Mark Pug</h6>
                     <p>CEO TechViet Production</p>
                 </div>
@@ -126,25 +126,25 @@ export default function EventPage() {
         <Row gutter={40}>
             <Col xs={24} md={12} lg={6}>
                 <div className="donorsItem">
-                    <img src="img/event/meta.jpg" alt="" />
+                    <img src="./../../../../img/event/meta.jpg" alt="" />
                     <p>Facebook</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={6}>
                 <div className="donorsItem">
-                    <img src="img/event/microsoft.jpg" alt="" />
+                    <img src="./../../../../img/event/microsoft.jpg" alt="" />
                     <p>Microsoft</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={6}>
                 <div className="donorsItem">
-                    <img src="img/event/Google-logo.jpg" alt="" />
+                    <img src="./../../../../img/event/Google-logo.jpg" alt="" />
                     <p>Google</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={6}>
                 <div className="donorsItem">
-                    <img src="img/event/amazon.jpg" alt="" />
+                    <img src="./../../../../img/event/amazon.jpg" alt="" />
                     <p>Amazon</p>
                 </div>
             </Col>

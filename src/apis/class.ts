@@ -47,3 +47,14 @@ export const getKhoaHocDanhMucApi = async (
     throw Error(error);
   }
 };
+
+export const getClassDetailApi = async (id: number | string | undefined) => {
+  try {
+    const response = await api.get<KhoaHoc>(
+      `QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${id}`
+    );
+    return response.data;
+  } catch (error: any) {
+    throw Error(error);
+  }
+};

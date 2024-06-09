@@ -70,7 +70,7 @@ export default function HeaderComponent() {
     <div className={`header ${isScrolled ? "headerScroll" : ""}`}>
       <div className="nav container mx-auto">
         <NavLink to={"/"}>
-          <img className="logo" src="img/logoelearning.png" />
+          <img className="logo" src="./../../../../img/logoelearning.png" />
         </NavLink>
 
         <ul className="nav-bar">

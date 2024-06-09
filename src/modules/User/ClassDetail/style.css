@@ -1,0 +1,224 @@
+.classDetailContent{
+    padding: 50px;
+}
+
+.classDetail{
+    padding: 10px;
+    box-shadow: 1px 1px 10px 4px #dadada;
+    border-radius: 5px;
+}
+
+.classDetail img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.classDetailView{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+    padding: 0 10px;
+}
+
+.classDetailView>p span{
+    margin-left: 5px;
+}
+
+.classDetailView>p .svg-inline--fa, .classDetailBonus ul li .svg-inline--fa{
+    color: #f6ba35;
+}
+
+.classDetailView>p span:last-of-type{
+    color: #8c8c8c;
+    font-size: 16px;
+}
+
+.classDetailInfo{
+    padding: 20px 10px;
+    font-size: 16px;
+}
+
+.classRegisterBtn{
+    width: 100%;
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+    height: 40px;
+    text-transform: uppercase;
+    color: white;
+    background-color: #f6ba35;
+    border: 1px solid #f6ba35;
+}
+
+.classRegisterBtn:hover{
+    background-color: white !important;
+    color: #f6ba35 !important;
+    border: 1px solid #f6ba35 !important;
+    transform: scale(0.95);
+}
+
+.classDetailBonus{
+    padding: 0 10px;
+}
+
+.classDetailBonus ul li {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    justify-content: space-between;
+    border-bottom: 1px solid #f2f1f1;
+    font-size: 18px;
+}
+
+.classDetailBonus ul li p, .lessonContent span{
+    color: #8c8c8c;
+}
+
+.classDetailBonus ul li span{
+    color: #121212;
+    font-weight: 600;
+}
+
+.titleClassDetail{
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.headClassDetail {
+    padding: 30px 0;
+}
+
+.classDetailIntro {
+    display: flex;
+    padding: 5px;
+    align-items: center;
+}
+
+.classDetailIntro img {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.instrutorTitle {
+    padding: 0 5px;
+    font-size: 16px;
+}
+
+.instrutorTitle p:first-of-type, .reviewDetail p {
+    font-size: 14px;
+    color: #8c8c8c;
+}
+
+.classDetailIntro .svg-inline--fa {
+    font-size: 35px;
+    color: #41b294;
+}
+
+.reviewDetail {
+    text-align: right;
+}
+
+.classDetailIntro .reviewDetail .svg-inline--fa  {
+    color: #f6ba35;
+    font-size: 20px;
+}
+
+.reviewDetail span {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.classDetailText{
+    color: #8c8c8c;
+    font-size: 16px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d0d0d0;
+    text-align: justify;
+}
+
+.boxClassLearn {
+    padding: 20px 0;
+    border-bottom: 1px solid #dadada;
+}
+
+.boxClassLearn h6 {
+    padding: 10px 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.boxClassLearn li {
+    padding: 5px 0;
+    text-align: justify;
+    font-size: 16px;
+}
+
+.boxClassLearn li .svg-inline--fa{
+    margin-right: 5px;
+    color: #f6ba35;
+    font-size: 18px;
+}
+
+.classContent h6{
+    font-size: 20px;
+    font-weight: 600;
+    padding: 20px 0;
+}
+
+.classContentItem{
+    padding: 20px 0;
+}
+
+.classContentItem p {
+    padding: 0 10px;
+}
+
+.classContentItemTitle{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: hsl(0deg 0% 86.3% / 14.12%);
+}
+
+.classContentItem p{
+    font-size: 18px;
+}
+
+.classContentItemTitle>span {
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 600;
+    margin-right: 20px;
+}
+
+.classPreviewBtn{
+    color: #41b294;
+    border: 1px solid #41b294;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.classPreviewBtn:hover{
+    color: white  !important;
+    border-color: #41b294 !important;
+    background-color: #41b294 !important;
+}
+
+.lessonContent {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 1px 1px 2px 1px rgba(239, 244, 190, .27);
+    font-size: 16px;
+}
+
+.lessonContent span .svg-inline--fa {
+    color: #41b294;
+    margin-right: 10px;
+}

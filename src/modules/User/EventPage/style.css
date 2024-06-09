@@ -1,6 +1,6 @@
 .eventBanner {
     position: relative;
-    background-image: url(img/event/backroundTech.jpg);
+    background-image: url(./../../../../img/event/backroundTech.jpg);
     background-repeat: no-repeat;
     background-position: 0;
     background-size: cover;
@@ -14,7 +14,7 @@
     top: 0;
     bottom: 0;
     width: 100%;
-    background-image: url(img/event/high-techbrain.png);
+    background-image: url(./../../../../img/event/high-techbrain.png);
     background-repeat: no-repeat;
     background-position: 100%;
     background-size: contain;
@@ -152,7 +152,7 @@
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url(img/event/lightTech.jpg);
+    background-image: url(./../../../../img/event/lightTech.jpg);
 }
 
 .speecher:after {
