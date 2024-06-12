@@ -7,6 +7,10 @@ import KhoaHocDanhMuc from "../modules/User/KhoaHocDanhMuc";
 import AboutPage from "../modules/User/AboutPage";
 import BlogPage from "../modules/User/BlogPage";
 import EventPage from "../modules/User/EventPage";
+import AuthLayout from "../layouts/AuthLayout";
+import LoginPage from "../modules/Auth/login";
+import RegisterPage from "../modules/Auth/register";
+import AdminLayout from "../layouts/AdminLayout";
 
 const userRouteElement = () => {
     const element = useRoutes([
@@ -43,7 +47,26 @@ const userRouteElement = () => {
                     element: <EventPage/>
                 }
             ]
-        }
+        },
+        {
+            path:"/auth",
+            element:<AuthLayout/>,
+            children: [
+                {
+                    path:"/auth/login",
+                    element: <LoginPage/>
+                },
+                {
+                    path:"/auth/register",
+                    element: <RegisterPage/>
+                }
+            ]
+        },
+{
+    path:"/admin",
+    element:<AdminLayout/>,
+    children:[]
+}
     ])
     return element;
 }

@@ -96,6 +96,24 @@
     transform: scale(1.04);
 }
 
+.headerUsername{
+    font-weight: 600;
+    font-size: 16px;
+    color: #41b294;
+    padding: 0 10px;
+}
+
+.logOutBtn{
+    color: red;
+    font-size: 18px;
+    height: auto;
+    border: none;
+}
+
+.logOutBtn:hover{
+    color: #f6ba35 !important;
+}
+
 /* responsive */
 .menuHeaderMobie {
     position: fixed;

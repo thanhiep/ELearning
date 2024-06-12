@@ -2,14 +2,21 @@ import { useEffect, useState } from "react";
 import { Button, Dropdown, Skeleton } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
 import "./style.css";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getDanhMuc } from "../../apis/class";
 import { DanhMuc } from "../../types/class.type";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { logOut } from "../../redux/slices/user.slice";
 
 export default function HeaderComponent() {
   const [visible, setVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { currentUser } = useAppSelector((state) => state.user);
+
+  const dispatch = useAppDispatch()
 
   const { isLoading: isDanhMucLoading, data: dataDanhMuc = [] } = useQuery({
     queryKey: ["danh-muc"],
@@ -65,6 +72,11 @@ export default function HeaderComponent() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleLogOut = () =>{
+    localStorage.removeItem("user")
+    dispatch(logOut())
+  }
 
   return (
     <div className={`header ${isScrolled ? "headerScroll" : ""}`}>
@@ -122,10 +134,28 @@ export default function HeaderComponent() {
             </NavLink>
           </li>
         </ul>
-        <div className="authBtn">
-          <Button className="loginBtn"> Đăng nhập</Button>
-          <Button className="signupBtn">Đăng ký</Button>
-        </div>
+        {currentUser ? (
+          <div>
+            <Link to={"/profile"}>
+              <span className="headerUsername"> {currentUser.taiKhoan}</span>
+            </Link>
+            <Button className="logOutBtn" onClick={handleLogOut}>
+              <FontAwesomeIcon
+                icon={faArrowRightFromBracket}
+                className="logOutIcon"
+              />
+            </Button>
+          </div>
+        ) : (
+          <div className="authBtn">
+            <Button className="loginBtn">
+              <Link to={"/auth/login"}>Đăng nhập</Link>
+            </Button>
+            <Button className="signupBtn">
+              <Link to={"/auth/register"}>Đăng ký</Link>
+            </Button>
+          </div>
+        )}
 
         <ul
           className={
