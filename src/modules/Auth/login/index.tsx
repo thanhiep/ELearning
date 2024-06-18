@@ -1,11 +1,11 @@
 import { Typography, Form, Row, Col, Input, Button, Modal } from "antd";
-import { useAppDispatch, useAppSelector } from "../../../redux/hook";
+import { useAppDispatch } from "../../../redux/hook";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { loginApi } from "../../../apis/user";
 import { setCurrentUser } from "../../../redux/slices/user.slice";
 import { Controller, useForm } from "react-hook-form";
-import "./style.css";
+import "./../style.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
@@ -41,7 +41,7 @@ export default function LoginPage() {
       if (user.maLoaiNguoiDung === "GV") {
         navigate("/admin/user");
       } else {
-        window.history.back();
+        navigate("/");
       }
     },
     onError: (error) => {
@@ -149,7 +149,7 @@ export default function LoginPage() {
         title="Đăng nhập không thành công"
         open={isModalVisible}
         footer={null}
-        className="loginModal"
+        className="loginModal authModal"
         closable={false}
         centered
       >

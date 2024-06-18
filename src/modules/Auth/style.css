@@ -30,23 +30,26 @@
     color: red;
 }
 
-.loginModal{
+.authModal{
     text-align: center !important;
 }
 
-.loginModal .ant-modal-title{
+.authModal .ant-modal-title{
     text-transform: uppercase;
     font-size: 20px;
     color: red;
 }
 
-.loginModal img{
+.authModal img{
     width: 70px;
     height: 70px; 
     margin: 10px auto;
 }
 
-.loginModal p{
+.authModal p{
     font-size: 18px;
 }
 
+.registerModal .ant-modal-title{
+    color: #41b294;
+}
