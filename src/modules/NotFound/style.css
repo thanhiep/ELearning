@@ -1,0 +1,52 @@
+.notFound{
+    height: 100vh;
+    background-image: url(./../../../public/img/dribbble_1.gif);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.notFoundContainer{
+    position: relative;
+    height: 100%;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.notFoundContent{
+    top: 15%;
+}
+
+.notFoundContent,.notFoundBottom{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.notFoundBottom{
+    top: 75%;
+}
+
+.notFoundText {
+    font-size: 100px;
+    color: #ed85ab;
+    font-weight: 600;
+    font-family: cursive;
+    text-align: center;
+}
+
+.notFoundBottom h3 {
+    font-family: monospace;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.backToHomeBtn{
+    display: flex;
+    align-items: center;
+    margin: 20px auto;
+    padding: 30px !important;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 600;
+}

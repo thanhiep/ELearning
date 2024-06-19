@@ -16,7 +16,7 @@ export default function HeaderComponent() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { currentUser } = useAppSelector((state) => state.user);
 
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const { isLoading: isDanhMucLoading, data: dataDanhMuc = [] } = useQuery({
     queryKey: ["danh-muc"],
@@ -52,9 +52,15 @@ export default function HeaderComponent() {
 
   const dropdownSuKien = (
     <ul className="dropdown">
-      <li className="dropdownItem">sự kiện sale cuối năm</li>
-      <li className="dropdownItem">sự kiện giáng sinh</li>
-      <li className="dropdownItem">sự kiện tết</li>
+      <Link to={"/event/year-end"}>
+        <li className="dropdownItem">sự kiện sale cuối năm</li>
+      </Link>
+      <Link to={"/event/noel"}>
+        <li className="dropdownItem">sự kiện giáng sinh</li>
+      </Link>
+      <Link to={"/event/new-year"}>
+        <li className="dropdownItem">sự kiện tết</li>
+      </Link>
     </ul>
   );
 
@@ -73,10 +79,10 @@ export default function HeaderComponent() {
     };
   }, []);
 
-  const handleLogOut = () =>{
-    localStorage.removeItem("user")
-    dispatch(logOut())
-  }
+  const handleLogOut = () => {
+    localStorage.removeItem("user");
+    dispatch(logOut());
+  };
 
   return (
     <div className={`header ${isScrolled ? "headerScroll" : ""}`}>

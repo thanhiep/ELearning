@@ -58,3 +58,27 @@ export const getClassDetailApi = async (id: number | string | undefined) => {
     throw Error(error);
   }
 };
+
+export const registerClassApi = async (payload: {
+  maKhoaHoc: string;
+  taiKhoan: string;
+}) => {
+  try {
+    const response = await api.post("/QuanLyKhoaHoc/DangKyKhoaHoc", payload);
+    return response.data;
+  } catch (error: any) {
+    throw Error(error);
+  }
+};
+
+export const cancelClassApi = async (payload: {
+  maKhoaHoc: string;
+  taiKhoan: string;
+}) => {
+  try {
+    const response = await api.post(`/QuanLyKhoaHoc/HuyGhiDanh`, payload);
+    return response;
+  } catch (error: any) {
+    throw Error(error);
+  }
+};

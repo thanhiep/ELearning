@@ -1,0 +1,69 @@
+.profileContentBox{
+    padding: 60px 0;
+}
+
+.profileContent h3{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.profileContent img{
+    width: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.profileTextBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileText{
+    display: inline-block;
+}
+
+.profileText p{
+    font-size: 18px;
+    line-height: 2;
+}
+
+.profileText p span{
+    font-weight: 600;
+}
+
+.cancelCourseBtn{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.cancelBtn{
+    color: white;
+    background-color: rgb(219, 32, 32);
+    transition: 0.3s;
+}
+
+.cancelBtn:hover{
+    color: rgb(219, 32, 32) !important;
+    background: white !important;
+    border-color: rgb(219, 32, 32) !important;
+    transform: scale(1.05);
+}
+
+.confirmDeleteBtn{
+    color: white;
+    background-color: #15BD58;
+    transition: 0.3s;
+}
+
+.confirmDeleteBtn:hover{
+    color: #15BD58 !important;
+    background: white !important;
+    border-color: #15BD58 !important;
+    transform: scale(1.05);
+}

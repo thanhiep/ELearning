@@ -1,8 +1,8 @@
-import { Button, Col, Row, Skeleton } from "antd";
+import { Button, Col, Modal, Row, Skeleton } from "antd";
 import "./style.css";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
-import { getClassDetailApi } from "../../../apis/class";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useNavigate, useParams } from "react-router-dom";
+import { getClassDetailApi, registerClassApi } from "../../../apis/class";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBook,
@@ -16,15 +16,79 @@ import {
   faUserGraduate,
   faVideo,
 } from "@fortawesome/free-solid-svg-icons";
-import { faClock,  faStarHalfAlt } from "@fortawesome/free-regular-svg-icons";
+import { faClock, faStarHalfAlt } from "@fortawesome/free-regular-svg-icons";
+import { useAppSelector } from "../../../redux/hook";
+import { useState } from "react";
+import "./../../Auth/style.css";
+import { getUserProfileApi } from "../../../apis/user";
 
 export default function ClassDetail() {
   const { id } = useParams();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { isLoading, data } = useQuery({
     queryKey: ["class-detail", id],
     queryFn: () => getClassDetailApi(id),
   });
+
+  const { data: userProfileData } = useQuery({
+    queryKey: ["profile",id],
+    queryFn: () => getUserProfileApi(),
+  });
+
+  const { mutate: handleClassRegister, isPending } = useMutation({
+    mutationFn: (payload: any) => registerClassApi(payload),
+    onSuccess: () => {
+      setIsModalOpen(true);
+    },
+    onError: (error) => {
+      console.log("onError", error);
+    },
+  });
+
+  const navigate = useNavigate();
+  const { currentUser } = useAppSelector((state) => state.user);
+
+  const onSubmit = () => {
+    if (currentUser) {
+      const course = {
+        maKhoaHoc: id,
+        taiKhoan: currentUser.taiKhoan,
+      };
+      handleClassRegister(course);
+    } else {
+      navigate("/auth/login");
+    }
+  };
+
+  const renderButtonDetail = () => {
+    if (userProfileData) {
+      const index = userProfileData.chiTietKhoaHocGhiDanh.findIndex(
+        (course) => course.maKhoaHoc === id
+      );
+      if (index !== -1) {
+        return (
+          <Button
+            className=" disableBtn"
+            disabled
+          >
+            Đã đăng ký
+          </Button>
+        )
+      } else {
+        return (
+          <Button
+            className="classRegisterBtn"
+            onClick={onSubmit}
+            disabled={isPending}
+          >
+            Đăng ký
+          </Button>
+        )
+      }
+    }
+  };
 
   const renderClassDetail = () => {
     if (data) {
@@ -46,7 +110,7 @@ export default function ClassDetail() {
               500.000<sup>đ</sup>
             </p>
           </div>
-          <Button className="classRegisterBtn">Đăng ký</Button>
+          {renderButtonDetail()}
           <div className="classDetailBonus">
             <ul>
               <li>
@@ -196,25 +260,29 @@ export default function ClassDetail() {
                     <li>
                       <FontAwesomeIcon icon={faCheck} />
                       <span>
-                      Thông thạo chuỗi công cụ hỗ trợ React, bao gồm cú pháp Javascript NPM, Webpack, Babel và ES6 / ES2015
+                        Thông thạo chuỗi công cụ hỗ trợ React, bao gồm cú pháp
+                        Javascript NPM, Webpack, Babel và ES6 / ES2015
                       </span>
                     </li>
                     <li>
                       <FontAwesomeIcon icon={faCheck} />
                       <span>
-                      Hãy là kỹ sư giải thích cách hoạt động của Redux cho mọi người, bởi vì bạn biết rất rõ các nguyên tắc cơ bản
+                        Hãy là kỹ sư giải thích cách hoạt động của Redux cho mọi
+                        người, bởi vì bạn biết rất rõ các nguyên tắc cơ bản
                       </span>
                     </li>
                     <li>
                       <FontAwesomeIcon icon={faCheck} />
                       <span>
-                      Nắm vững các khái niệm cơ bản đằng sau việc cấu trúc các ứng dụng Redux
+                        Nắm vững các khái niệm cơ bản đằng sau việc cấu trúc các
+                        ứng dụng Redux
                       </span>
                     </li>
                     <li>
                       <FontAwesomeIcon icon={faCheck} />
                       <span>
-                      Nhận ra sức mạnh của việc xây dựng các thành phần có thể kết hợp
+                        Nhận ra sức mạnh của việc xây dựng các thành phần có thể
+                        kết hợp
                       </span>
                     </li>
                   </ul>
@@ -233,41 +301,41 @@ export default function ClassDetail() {
                   <div className="lessonContainer">
                     <div className="lessonContent">
                       <span>
-                        <FontAwesomeIcon icon={faPlayCircle}/>
+                        <FontAwesomeIcon icon={faPlayCircle} />
                         Các khái niệm về React Component
                       </span>
                       <span>
-                        <FontAwesomeIcon icon={faClock}/>
+                        <FontAwesomeIcon icon={faClock} />
                         15:35
                       </span>
                     </div>
                     <div className="lessonContent">
                       <span>
-                        <FontAwesomeIcon icon={faPlayCircle}/>
+                        <FontAwesomeIcon icon={faPlayCircle} />
                         Thiết lập môi trường cho Windows
                       </span>
                       <span>
-                        <FontAwesomeIcon icon={faClock}/>
+                        <FontAwesomeIcon icon={faClock} />
                         15:35
                       </span>
                     </div>
                     <div className="lessonContent">
                       <span>
-                        <FontAwesomeIcon icon={faPlayCircle}/>
+                        <FontAwesomeIcon icon={faPlayCircle} />
                         Tạo ứng dụng React - React-Scripts
                       </span>
                       <span>
-                        <FontAwesomeIcon icon={faClock}/>
+                        <FontAwesomeIcon icon={faClock} />
                         15:35
                       </span>
                     </div>
                     <div className="lessonContent">
                       <span>
-                        <FontAwesomeIcon icon={faPlayCircle}/>
+                        <FontAwesomeIcon icon={faPlayCircle} />
                         Ghi chú nhanh về dấu ngoặc kép cho string interpolation
                       </span>
                       <span>
-                        <FontAwesomeIcon icon={faClock}/>
+                        <FontAwesomeIcon icon={faClock} />
                         15:35
                       </span>
                     </div>
@@ -282,51 +350,51 @@ export default function ClassDetail() {
                   <div className="lessonContainer">
                     <div className="lessonContent">
                       <span>
-                        <FontAwesomeIcon icon={faPlayCircle}/>
+                        <FontAwesomeIcon icon={faPlayCircle} />
                         Trang chủ và thành phần thư mục
                       </span>
                       <span>
-                        <FontAwesomeIcon icon={faClock}/>
+                        <FontAwesomeIcon icon={faClock} />
                         15:35
                       </span>
                     </div>
                     <div className="lessonContent">
                       <span>
-                        <FontAwesomeIcon icon={faPlayCircle}/>
+                        <FontAwesomeIcon icon={faPlayCircle} />
                         Hướng dẫn khóa học + Liên kết Github
                       </span>
                       <span>
-                        <FontAwesomeIcon icon={faClock}/>
+                        <FontAwesomeIcon icon={faClock} />
                         15:35
                       </span>
                     </div>
                     <div className="lessonContent">
                       <span>
-                        <FontAwesomeIcon icon={faPlayCircle}/>
+                        <FontAwesomeIcon icon={faPlayCircle} />
                         Trang chủ thương mại điện tử + thiết lập SASS
                       </span>
                       <span>
-                        <FontAwesomeIcon icon={faClock}/>
+                        <FontAwesomeIcon icon={faClock} />
                         15:35
                       </span>
                     </div>
                     <div className="lessonContent">
                       <span>
-                        <FontAwesomeIcon icon={faPlayCircle}/>
+                        <FontAwesomeIcon icon={faPlayCircle} />
                         Tệp CSS và SCSS
                       </span>
                       <span>
-                        <FontAwesomeIcon icon={faClock}/>
+                        <FontAwesomeIcon icon={faClock} />
                         15:35
                       </span>
                     </div>
                     <div className="lessonContent">
                       <span>
-                        <FontAwesomeIcon icon={faPlayCircle}/>
+                        <FontAwesomeIcon icon={faPlayCircle} />
                         React 17: Cập nhật các gói + Phiên bản React mới nhất
                       </span>
                       <span>
-                        <FontAwesomeIcon icon={faClock}/>
+                        <FontAwesomeIcon icon={faClock} />
                         15:35
                       </span>
                     </div>
@@ -341,35 +409,34 @@ export default function ClassDetail() {
                   <div className="lessonContainer">
                     <div className="lessonContent">
                       <span>
-                        <FontAwesomeIcon icon={faPlayCircle}/>
+                        <FontAwesomeIcon icon={faPlayCircle} />
                         connect() and mapStateToProps
                       </span>
                       <span>
-                        <FontAwesomeIcon icon={faClock}/>
+                        <FontAwesomeIcon icon={faClock} />
                         15:35
                       </span>
                     </div>
                     <div className="lessonContent">
                       <span>
-                        <FontAwesomeIcon icon={faPlayCircle}/>
+                        <FontAwesomeIcon icon={faPlayCircle} />
                         Trạng thái thư mục vào Redux
                       </span>
                       <span>
-                        <FontAwesomeIcon icon={faClock}/>
+                        <FontAwesomeIcon icon={faClock} />
                         15:35
                       </span>
                     </div>
                     <div className="lessonContent">
                       <span>
-                        <FontAwesomeIcon icon={faPlayCircle}/>
+                        <FontAwesomeIcon icon={faPlayCircle} />
                         Thành phần Tổng quan về Bộ sưu tập
                       </span>
                       <span>
-                        <FontAwesomeIcon icon={faClock}/>
+                        <FontAwesomeIcon icon={faClock} />
                         15:35
                       </span>
                     </div>
-                   
                   </div>
                 </div>
               </div>
@@ -380,6 +447,36 @@ export default function ClassDetail() {
           </Col>
         </Row>
       </div>
+      <Modal
+        title="Đăng ký khóa học thành công"
+        open={isModalOpen}
+        footer={null}
+        className="authModal registerModal"
+        closable={false}
+        centered
+      >
+        <img src="./../../../../img/successIcon.png" alt="" />
+        <p>
+          Bạn đã đăng ký khóa học thành công, nhấn nút bên dưới để xem thêm chi
+          tiết.
+        </p>
+        <Button
+          className="tryAgainBtn mt-5 mr-5"
+          onClick={() => {
+            navigate("/profile");
+          }}
+        >
+          Xem thông tin
+        </Button>
+        <Button
+          className="moreCourseBtn mt-5"
+          onClick={() => {
+            navigate("/class-list");
+          }}
+        >
+          Xem khóa học khác
+        </Button>
+      </Modal>
     </div>
   );
 }
