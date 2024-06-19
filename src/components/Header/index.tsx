@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Dropdown, Skeleton } from "antd";
+import { Avatar, Button, Dropdown, Skeleton } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
 import "./style.css";
 import { Link, NavLink } from "react-router-dom";
@@ -143,7 +143,8 @@ export default function HeaderComponent() {
         {currentUser ? (
           <div>
             <Link to={"/profile"}>
-              <span className="headerUsername"> {currentUser.taiKhoan}</span>
+              <Avatar src="./../../../../img/avartarIcon.jpg" />
+              <span className="headerUsername">{currentUser.taiKhoan}</span>
             </Link>
             <Button className="logOutBtn" onClick={handleLogOut}>
               <FontAwesomeIcon
@@ -194,9 +195,15 @@ export default function HeaderComponent() {
               sự kiện
             </NavLink>
             <ul className="courseCateListMobie">
-              <li className="dropdownItem">sự kiện sale cuối năm</li>
-              <li className="dropdownItem">sự kiện giáng sinh</li>
-              <li className="dropdownItem">sự kiện tết</li>
+              <Link to={"/event/year-end"}>
+                <li className="dropdownItem">sự kiện sale cuối năm</li>
+              </Link>
+              <Link to={"/event/noel"}>
+                <li className="dropdownItem">sự kiện giáng sinh</li>
+              </Link>
+              <Link to={"/event/new-year"}>
+                <li className="dropdownItem">sự kiện tết</li>
+              </Link>
             </ul>
           </li>
           <NavLink
