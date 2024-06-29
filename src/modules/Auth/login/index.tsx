@@ -1,6 +1,6 @@
 import { Typography, Form, Row, Col, Input, Button, Modal } from "antd";
 import { useAppDispatch } from "../../../redux/hook";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { loginApi } from "../../../apis/user";
 import { setCurrentUser } from "../../../redux/slices/user.slice";
@@ -31,18 +31,12 @@ export default function LoginPage() {
   });
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const { mutate: handleLogin, isPending } = useMutation({
     mutationFn: (payload: any) => loginApi(payload),
     onSuccess: (user) => {
       localStorage.setItem("user", JSON.stringify(user));
       dispatch(setCurrentUser(user));
-      if (user.maLoaiNguoiDung === "GV") {
-        navigate("/admin/user");
-      } else {
-        navigate("/");
-      }
     },
     onError: (error) => {
       console.log("onError", error);

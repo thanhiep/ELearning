@@ -5,7 +5,7 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config: any) => {
-  const userLocal = localStorage.getItem("user")
+  const userLocal = localStorage.getItem("user");
   const currentUser = userLocal ? JSON.parse(userLocal) : null;
 
   config.headers = {

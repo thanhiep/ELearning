@@ -25,3 +25,11 @@ body{
 .pageTitle h3{
   font-size: 1.75rem;
 }
+
+.ant-table-thead > tr > th {
+  text-align: center !important;
+}
+
+.ant-typography{
+  width: 100% !important;
+}

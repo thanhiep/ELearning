@@ -8,7 +8,7 @@ import { getDanhMuc } from "../../apis/class";
 import { DanhMuc } from "../../types/class.type";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightFromBracket, faGear } from "@fortawesome/free-solid-svg-icons";
 import { logOut } from "../../redux/slices/user.slice";
 
 export default function HeaderComponent() {
@@ -142,6 +142,7 @@ export default function HeaderComponent() {
         </ul>
         {currentUser ? (
           <div>
+            {currentUser.maLoaiNguoiDung === "GV" ? <Link style={{fontSize:"20px", paddingRight:"16px"}} to={"/admin/user"}><FontAwesomeIcon icon={faGear}/></Link> : ""}
             <Link to={"/profile"}>
               <Avatar src="./../../../../img/avartarIcon.jpg" />
               <span className="headerUsername">{currentUser.taiKhoan}</span>

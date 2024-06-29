@@ -64,7 +64,7 @@ export const registerClassApi = async (payload: {
   taiKhoan: string;
 }) => {
   try {
-    const response = await api.post("/QuanLyKhoaHoc/DangKyKhoaHoc", payload);
+    const response = await api.post("QuanLyKhoaHoc/DangKyKhoaHoc", payload);
     return response.data;
   } catch (error: any) {
     throw Error(error);
@@ -76,9 +76,55 @@ export const cancelClassApi = async (payload: {
   taiKhoan: string;
 }) => {
   try {
-    const response = await api.post(`/QuanLyKhoaHoc/HuyGhiDanh`, payload);
+    const response = await api.post(`QuanLyKhoaHoc/HuyGhiDanh`, payload);
     return response;
   } catch (error: any) {
     throw Error(error);
   }
 };
+
+export const addClassApi = async (course: FormData) => {
+  try {
+    const response = await api.post(
+      `QuanLyKhoaHoc/ThemKhoaHocUploadHinh`,
+      course
+    );
+    return response.data;
+  } catch (error: any) {
+    throw Error(error);
+  }
+};
+
+export const deleteClassApi = async (id: string | number) => {
+  try {
+    const response = await api.delete(
+      `QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${id}`
+    );
+    return response.data;
+  } catch (error: any) {
+    throw Error(error);
+  }
+};
+
+export const updateClassApi = async (course: FormData) => {
+  try {
+    const response = await api.post(
+      `QuanLyKhoaHoc/CapNhatKhoaHocUpload`,
+      course
+    );
+    return response.data;
+  } catch (error: any) {
+    throw Error(error);
+  }
+};
+
+export const acceptUserApi = async (payload: {
+  maKhoaHoc:string, taiKhoan:string
+}) =>{
+  try {
+    const response = await api.post(`QuanLyKhoaHoc/GhiDanhKhoaHoc`,payload)
+    return response.data
+  } catch (error:any) {
+    throw Error(error)
+  }
+}

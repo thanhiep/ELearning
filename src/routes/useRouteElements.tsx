@@ -14,19 +14,28 @@ import AdminLayout from "../layouts/AdminLayout";
 import ProfilePage from "../modules/User/ProfilePage";
 import { useAppSelector } from "../redux/hook";
 import NotFound from "../modules/NotFound";
-
+import UserManagement from "../modules/Admin/UserManagement";
+import CourseManagement from "../modules/Admin/CourseManagement";
 
 const RejectedRoute = () => {
   const { currentUser } = useAppSelector((state) => state.user);
-  return currentUser === null ? <Outlet /> : <Navigate to={"/"} />;
+  return currentUser === null ? (
+    <Outlet />
+  ) : currentUser.maLoaiNguoiDung === "GV" ? (
+    <Navigate to={"/admin/user"} />
+  ) : (
+    <Navigate to={"/"} />
+  );
 };
 
 const ProtectedAdminRoute = () => {
   const { currentUser } = useAppSelector((state) => state.user);
   return currentUser && currentUser.maLoaiNguoiDung === "GV" ? (
     <Outlet />
+  ) : currentUser ? (
+    <Navigate to={"/"} />
   ) : (
-    currentUser ? <Navigate to={"/"}/> : <Navigate to={"/auth/login"}/>
+    <Navigate to={"/auth/login"} />
   );
 };
 
@@ -93,20 +102,29 @@ const userRouteElement = () => {
 
     {
       path: "/admin",
-      element: <ProtectedAdminRoute/>,
+      element: <ProtectedAdminRoute />,
       children: [
         {
-            path:"",
-            element:<AdminLayout/>,
-            children:[]
-        }
+          path: "/admin",
+          element: <AdminLayout />,
+          children: [
+            {
+              path: "/admin/user",
+              element: <UserManagement />,
+            },
+            {
+              path: "/admin/courses",
+              element: <CourseManagement />,
+            },
+          ],
+        },
       ],
     },
 
     {
-        path:"*",
-        element: <NotFound/>
-    }
+      path: "*",
+      element: <NotFound />,
+    },
   ]);
   return element;
 };
