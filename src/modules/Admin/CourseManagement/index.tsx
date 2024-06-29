@@ -27,7 +27,7 @@ import {
   getClassListPaginationApi,
   updateClassApi,
 } from "../../../apis/class";
-import { NguoiTao } from "../../../types/class.type";
+import { KhoaHoc, NguoiTao } from "../../../types/class.type";
 import { useAppSelector } from "../../../redux/hook";
 import { getUserApplyApi, getUserWaitToApplyApi } from "../../../apis/user";
 
@@ -37,6 +37,7 @@ export default function CourseManagement() {
   const [currentPage, setCurrentPage] = useState(1);
   const [fileList, setFileList] = useState([]);
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+  const [isAddCourseFail, setIsAddCourseFail] = useState(false);
 
   const [userDataWait, setUserDataWait] = useState([]);
   const [userData, setUserData] = useState([]);
@@ -82,7 +83,7 @@ export default function CourseManagement() {
       });
     },
     onError: (error) => {
-      console.log(error);
+      setIsAddCourseFail(true);
     },
   });
 
@@ -145,17 +146,20 @@ export default function CourseManagement() {
       },
     });
 
-  const { mutate: handleAcceptUser } = useMutation({
-    mutationFn: (payload: { maKhoaHoc: string; taiKhoan: string }) => {
-      return acceptUserApi(payload);
-    },
-    onSuccess: () => {
-      console.log("thành công");
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
+  const { mutate: handleAcceptUser, isPending: acceptUserPending } =
+    useMutation({
+      mutationFn: (payload: { maKhoaHoc: string; taiKhoan: string }) => {
+        return acceptUserApi(payload);
+      },
+      onSuccess: (data) => {
+        console.log(data);
+        handleListUserWaitToApply({ maKhoaHoc: courseID });
+        handleListUserApply({ maKhoaHoc: courseID });
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    });
 
   const columns = [
     {
@@ -289,16 +293,18 @@ export default function CourseManagement() {
             <Popconfirm
               title="Duyệt"
               description="Bạn muốn duyệt học viên này?"
-              onConfirm={() =>
+              onConfirm={() => {
                 handleAcceptUser({
                   maKhoaHoc: courseID,
                   taiKhoan: record.taiKhoan,
-                })
-              }
+                });
+              }}
               okText={<span>OK</span>}
               cancelText="Huỷ"
             >
-              <Button type="primary" >Duyệt</Button>
+              <Button type="primary" loading={acceptUserPending}>
+                Duyệt
+              </Button>
             </Popconfirm>
           </Space>
         </div>
@@ -314,7 +320,7 @@ export default function CourseManagement() {
         <Typography.Paragraph>{hoTen}</Typography.Paragraph>
       ),
     },
-  ]
+  ];
 
   const handleDelete = (id: string | number) => {
     handleDeleteCourse(id);
@@ -330,9 +336,18 @@ export default function CourseManagement() {
     setFileList(info.fileList.slice(-1));
   };
 
+  const uuidv4 = () => {
+    const uuid = "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (c) =>
+      (
+        +c ^
+        (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (+c / 4)))
+      ).toString(16)
+    );
+    return uuid.substr(uuid.length - 8);
+  };
+
   const onSubmit = (formValues: any) => {
     const formData = new FormData();
-    formData.append("maKhoaHoc", formValues.maKhoaHoc);
     formData.append("biDanh", formValues.biDanh);
     formData.append("tenKhoaHoc", formValues.tenKhoaHoc);
     formData.append("moTa", formValues.moTa);
@@ -344,8 +359,12 @@ export default function CourseManagement() {
     formData.append("maDanhMucKhoaHoc", formValues.maDanhMucKhoaHoc);
     formData.append("taiKhoanNguoiTao", formValues.taiKhoanNguoiTao);
     if (dataEdit === undefined) {
+      const newMaKhoaHoc = uuidv4();
+      formValues.maKhoaHoc = newMaKhoaHoc;
+      formData.append("maKhoaHoc", formValues.maKhoaHoc);
       handleAddCourse(formData);
     } else {
+      formData.append("maKhoaHoc", (dataEdit as KhoaHoc).maKhoaHoc);
       handleUpdateCourse(formData);
     }
     console.log(formValues);
@@ -419,6 +438,7 @@ export default function CourseManagement() {
               <Controller
                 name="maKhoaHoc"
                 control={control}
+                disabled
                 render={({ field }) => (
                   <Input
                     size="large"
@@ -785,6 +805,26 @@ export default function CourseManagement() {
           }}
         >
           Quay lại
+        </Button>
+      </Modal>
+
+      <Modal
+        title="Thêm khóa học không thành công"
+        open={isAddCourseFail}
+        footer={null}
+        className="authModal  loginModal"
+        closable={false}
+        centered
+      >
+        <img src="./../../../../img/login-fail-icon.png" alt="" />
+        <p>Mã khóa học đã tồn tại.</p>
+        <Button
+          className="tryAgainBtn mt-5"
+          onClick={() => {
+            setIsAddCourseFail(false);
+          }}
+        >
+          Thử lại
         </Button>
       </Modal>
     </>
