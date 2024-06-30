@@ -16,6 +16,7 @@ import { useAppSelector } from "../redux/hook";
 import NotFound from "../modules/NotFound";
 import UserManagement from "../modules/Admin/UserManagement";
 import CourseManagement from "../modules/Admin/CourseManagement";
+import ProfileManagement from "../modules/Admin/ProfileManagement";
 
 const RejectedRoute = () => {
   const { currentUser } = useAppSelector((state) => state.user);
@@ -116,6 +117,10 @@ const userRouteElement = () => {
               path: "/admin/courses",
               element: <CourseManagement />,
             },
+            {
+              path:"/admin/setting",
+              element:<ProfileManagement/>
+            }
           ],
         },
       ],

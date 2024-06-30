@@ -23,60 +23,30 @@ import {
   deleteUserApi,
   getCourseAccept,
   getCourseWaitToAccept,
+  getUserListApi,
   getUserListPaginationApi,
   updateUserApi,
 } from "../../../apis/user";
 import { UserAdd } from "../../../types/user.type";
-import * as yup from "yup";
-import {
-  ALPHA_NUMBER_REGEX,
-  EMAIL_REGEX,
-  PHONE_REGEX,
-  VIETNAMESE_REGEX,
-} from "../../../constants";
 import { yupResolver } from "@hookform/resolvers/yup";
-
-const schema = yup.object({
-  hoTen: yup
-    .string()
-    .trim()
-    .required("(*) Vui lòng nhập họ tên")
-    .matches(VIETNAMESE_REGEX, "(*) Họ tên chỉ được nhập chữ")
-    .min(6, "(*) Họ tên quá ngắn"),
-  taiKhoan: yup
-    .string()
-    .required("(*) Vui lòng nhập tài khoản")
-    .matches(ALPHA_NUMBER_REGEX, "(*) Tài khoản không được chứa ký tự đặc biệt")
-    .min(4, "(*) Tài khoản quá ngắn"),
-  matKhau: yup
-    .string()
-    .required("(*) Vui lòng nhập mật khẩu")
-    .min(8, "(*) Mật khẩu quá ngắn")
-    .max(32, "(*) Mật khẩu chỉ được tối đa 32 ký tự"),
-  email: yup
-    .string()
-    .required("(*) Vui lòng nhập email")
-    .matches(EMAIL_REGEX, "(*) Email không đúng định dạng"),
-  soDT: yup
-    .string()
-    .required("(*) Vui lòng nhập số điện thoại")
-    .matches(PHONE_REGEX, "(*) Số điện thoại không đúng định dạng"),
-  maNhom: yup.string().required("(*) Vui lòng chọn nhóm"),
-  maLoaiNguoiDung: yup.string().required("(*) Vui lòng chọn loại người dùng"),
-});
+import { acceptUserApi, cancelClassApi } from "../../../apis/class";
+import { SearchOutlined } from "@ant-design/icons";
+import { SCHEMA_USER_FORM } from "../../../constants/yupGlobal";
 
 export default function UserManagement() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [dataEdit, setDataEdit] = useState(undefined);
   const [currentPage, setCurrentPage] = useState(1);
   const [isCourseModalOpen, setIsCourseModalOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   const [isAddUserFail, setIsAddUserFail] = useState(false);
   const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
   const [isDeleteFail, setIsDeleteFail] = useState(false);
+  const [userID, setUserID] = useState("");
 
-  const [courseDataWait, setCourseDataWait] = useState([])
-  const [courseData, setCourseData] = useState([])
+  const [courseDataWait, setCourseDataWait] = useState([]);
+  const [courseData, setCourseData] = useState([]);
 
   const {
     handleSubmit,
@@ -95,13 +65,21 @@ export default function UserManagement() {
       email: "",
     },
     mode: `onChange`,
-    resolver: yupResolver(schema),
+    resolver: yupResolver(SCHEMA_USER_FORM),
   });
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["list-user-pagination", { currentPage }],
     queryFn: () => getUserListPaginationApi(currentPage),
   });
+
+  const dataSource = data?.items || [];
+  const totalCount = data?.totalCount || 0;
+
+  const {data: userList} = useQuery({
+    queryKey:["user-list", {dataSource}],
+    queryFn: getUserListApi,
+  })
 
   const queryClient = useQueryClient();
 
@@ -159,11 +137,11 @@ export default function UserManagement() {
       return getCourseWaitToAccept(payload);
     },
     onSuccess: (data) => {
-      setCourseDataWait(data)
+      setCourseDataWait(data);
     },
-    onError: (error)=>{
-      console.log(error)
-    }
+    onError: (error) => {
+      console.log(error);
+    },
   });
 
   const { mutate: handleCourseAccpet } = useMutation({
@@ -171,13 +149,40 @@ export default function UserManagement() {
       return getCourseAccept(payload);
     },
     onSuccess: (data) => {
-      setCourseData(data)
-      console.log(data)
+      setCourseData(data);
     },
-    onError: (error)=>{
-      console.log(error)
-    }
+    onError: (error) => {
+      console.log(error);
+    },
   });
+
+  const { mutate: handleAcceptCourse, isPending: acceptCoursePending } =
+    useMutation({
+      mutationFn: (payload: { taiKhoan: string; maKhoaHoc: string }) => {
+        return acceptUserApi(payload);
+      },
+      onSuccess: () => {
+        handleCourseWaitAccpet({ taiKhoan: userID });
+        handleCourseAccpet({ taiKhoan: userID });
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    });
+
+  const { mutate: handleCancelCourse, isPending: cancelCoursePending } =
+    useMutation({
+      mutationFn: (payload: { maKhoaHoc: string; taiKhoan: string }) => {
+        return cancelClassApi(payload);
+      },
+      onSuccess: () => {
+        handleCourseWaitAccpet({ taiKhoan: userID });
+        handleCourseAccpet({ taiKhoan: userID });
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    });
 
   const columns = [
     {
@@ -205,7 +210,7 @@ export default function UserManagement() {
 
     {
       title: "Điện thoại",
-      dataIndex: "soDT",
+      dataIndex: searchValue === "" ? "soDT" : "soDt",
       render: (soDT: number) => (
         <Typography.Paragraph
           style={{ textAlign: "center" }}
@@ -225,6 +230,20 @@ export default function UserManagement() {
             className="w-[120px]"
           >
             {email}
+          </Typography.Paragraph>
+        );
+      },
+    },
+    {
+      title: "Loại người dùng",
+      dataIndex: "tenLoaiNguoiDung",
+      render: (tenLoaiNguoiDung: string) => {
+        return (
+          <Typography.Paragraph
+            style={{ textAlign: "center" }}
+            className="w-[120px]"
+          >
+            {tenLoaiNguoiDung}
           </Typography.Paragraph>
         );
       },
@@ -271,11 +290,17 @@ export default function UserManagement() {
             >
               Chỉnh sửa
             </Button>
-            <Button type="primary" onClick={()=>{
-              setIsCourseModalOpen(true)
-              handleCourseWaitAccpet({taiKhoan:record.taiKhoan})
-              handleCourseAccpet({taiKhoan:record.taiKhoan})
-              }}>Khóa học</Button>
+            <Button
+              type="primary"
+              onClick={() => {
+                setIsCourseModalOpen(true);
+                handleCourseWaitAccpet({ taiKhoan: record.taiKhoan });
+                handleCourseAccpet({ taiKhoan: record.taiKhoan });
+                setUserID(record.taiKhoan);
+              }}
+            >
+              Khóa học
+            </Button>
           </Space>
         </div>
       ),
@@ -297,6 +322,29 @@ export default function UserManagement() {
         <Typography.Paragraph>{tenKhoaHoc}</Typography.Paragraph>
       ),
     },
+    {
+      title: "Thao tác",
+      render: (_: any, record: any) => (
+        <div className="flex justify-center">
+          <Space size="small">
+            <Popconfirm
+              title="Duyệt"
+              description="Bạn muốn duyệt khóa học này?"
+              onConfirm={() => {
+                handleAcceptCourse({
+                  maKhoaHoc: record.maKhoaHoc,
+                  taiKhoan: userID,
+                });
+              }}
+              okText={<span>OK</span>}
+              cancelText="Huỷ"
+            >
+              <Button type="primary">Duyệt</Button>
+            </Popconfirm>
+          </Space>
+        </div>
+      ),
+    },
   ];
 
   const columnsCourse = [
@@ -307,6 +355,7 @@ export default function UserManagement() {
         <Typography.Paragraph>{maKhoaHoc}</Typography.Paragraph>
       ),
     },
+
     {
       title: "Khóa học",
       dataIndex: "tenKhoaHoc",
@@ -314,7 +363,32 @@ export default function UserManagement() {
         <Typography.Paragraph>{tenKhoaHoc}</Typography.Paragraph>
       ),
     },
-  ]
+    {
+      title: "Thao tác",
+      render: (_: any, record: any) => (
+        <div className="flex justify-center">
+          <Space size="small">
+            <Popconfirm
+              title="Xóa"
+              description="Bạn muốn xóa khóa học này khỏi danh sách?"
+              onConfirm={() => {
+                handleCancelCourse({
+                  maKhoaHoc: record.maKhoaHoc,
+                  taiKhoan: userID,
+                });
+              }}
+              okText={<span>OK</span>}
+              cancelText="Huỷ"
+            >
+              <Button danger loading={cancelCoursePending}>
+                Xóa
+              </Button>
+            </Popconfirm>
+          </Space>
+        </div>
+      ),
+    },
+  ];
 
   const handleDelete = (id: string) => {
     handleDeleteUser(id);
@@ -328,8 +402,20 @@ export default function UserManagement() {
     }
   };
 
-  const dataSource = data?.items || [];
-  const totalCount = data?.totalCount || 0;
+  const handleSearchChange = (e: any) => {
+    const { value } = e.target;
+    setSearchValue(value);
+    setCurrentPage(1);
+  };
+
+  const dataSearch = userList?.filter((user)=>{
+    return user.hoTen.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
+  })
+  const totalCountSearch = dataSearch?.length;
+
+  const startIndex = (currentPage - 1) * PAGE_SIZE;
+  const endIndex = startIndex + PAGE_SIZE;
+  const paginatedData = dataSearch?.slice(startIndex, endIndex);
 
   return (
     <>
@@ -345,6 +431,15 @@ export default function UserManagement() {
             },
           ]}
         />
+
+        <Input
+          placeholder="Nhập tên người dùng để tìm kiếm..."
+          prefix={<SearchOutlined />}
+          style={{ width: 300 }}
+          value={searchValue}
+          onChange={handleSearchChange}
+        />
+
         <Button
           type="primary"
           size="large"
@@ -363,19 +458,21 @@ export default function UserManagement() {
           className="mt-2"
           columns={columns}
           rowKey={"taiKhoan"}
-          dataSource={dataSource}
+          dataSource={searchValue !== "" ? paginatedData : dataSource}
           pagination={false}
           scroll={{ x: 1280 }}
           loading={isLoading}
         />
-        <div className="flex float-end mt-4 pb-4">
+        <div className="flex justify-center mt-4 pb-4">
           <Pagination
+          current={currentPage}
             defaultCurrent={currentPage}
-            total={totalCount}
+            total={searchValue !== "" ? totalCountSearch : totalCount}
             pageSize={PAGE_SIZE}
             onChange={(page: number) => {
               setCurrentPage(page);
             }}
+            showSizeChanger={false}
           />
         </div>
       </div>

@@ -15,21 +15,56 @@ import {
   Upload,
 } from "antd";
 
-import { UploadOutlined, DeleteOutlined } from "@ant-design/icons";
+import {
+  UploadOutlined,
+  DeleteOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { PAGE_SIZE } from "../../../constants";
+import { DATE_REGEX, PAGE_SIZE } from "../../../constants";
 import {
   acceptUserApi,
   addClassApi,
+  cancelClassApi,
   deleteClassApi,
+  getClassListApi,
   getClassListPaginationApi,
   updateClassApi,
 } from "../../../apis/class";
 import { KhoaHoc, NguoiTao } from "../../../types/class.type";
 import { useAppSelector } from "../../../redux/hook";
 import { getUserApplyApi, getUserWaitToApplyApi } from "../../../apis/user";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object({
+  maKhoaHoc: yup.string(),
+  biDanh: yup
+    .string()
+    .required("(*) Vui lòng nhập bí danh")
+    .max(20, "(*) Tối đa 20 ký tự"),
+  tenKhoaHoc: yup.string().required("(*) Vui lòng nhập tên khóa học"),
+  moTa: yup.string().required("(*) Vui lòng nhập mô tả"),
+  luotXem: yup
+    .number()
+    .typeError("(*) Vui lòng nhập số"),
+  danhGia: yup
+    .number()
+    .typeError("(*) Vui lòng nhập một số từ 0 - 10")
+    .min(0, "(*) Đánh giá phải từ 0 - 10")
+    .max(10, "(*) Đánh giá phải từ 0 - 10"),
+  maNhom: yup.string().required("(*) Vui lòng chọn mã nhóm"),
+  hinhAnh: yup.mixed().required("(*) Vui lòng tải lên hình ảnh"),
+  ngayTao: yup
+    .string()
+    .required("(*) Vui lòng nhập ngày tạo")
+    .matches(DATE_REGEX, "(*) Ngày tạo phải theo định dạng DD/MM/YYYY"),
+  maDanhMucKhoaHoc: yup.string().required("(*) Vui lòng chọn danh mục"),
+  taiKhoanNguoiTao: yup
+    .string()
+});
 
 export default function CourseManagement() {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -38,6 +73,7 @@ export default function CourseManagement() {
   const [fileList, setFileList] = useState([]);
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
   const [isAddCourseFail, setIsAddCourseFail] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   const [userDataWait, setUserDataWait] = useState([]);
   const [userData, setUserData] = useState([]);
@@ -48,7 +84,14 @@ export default function CourseManagement() {
 
   const { currentUser } = useAppSelector((state) => state.user);
 
-  const { handleSubmit, control, watch, setValue, reset } = useForm({
+  const {
+    handleSubmit,
+    control,
+    watch,
+    setValue,
+    reset,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       maKhoaHoc: "",
       biDanh: "",
@@ -62,11 +105,21 @@ export default function CourseManagement() {
       maDanhMucKhoaHoc: "",
       taiKhoanNguoiTao: "",
     },
+    mode: `onChange`,
+    resolver: yupResolver(schema),
   });
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["list-class-pagination", { currentPage }],
     queryFn: () => getClassListPaginationApi(currentPage),
+  });
+
+  const dataSource = data?.items || [];
+  const totalCount = data?.totalCount || 0;
+
+  const { data: courseList } = useQuery({
+    queryKey: ["class-list", { dataSource }],
+    queryFn: getClassListApi,
   });
 
   const queryClient = useQueryClient();
@@ -75,7 +128,7 @@ export default function CourseManagement() {
     mutationFn: (formValues: FormData) => {
       return addClassApi(formValues);
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       setIsOpenModal(false);
       queryClient.refetchQueries({
         queryKey: ["list-class-pagination", { currentPage }],
@@ -83,6 +136,7 @@ export default function CourseManagement() {
       });
     },
     onError: (error) => {
+      console.log(error)
       setIsAddCourseFail(true);
     },
   });
@@ -151,8 +205,21 @@ export default function CourseManagement() {
       mutationFn: (payload: { maKhoaHoc: string; taiKhoan: string }) => {
         return acceptUserApi(payload);
       },
-      onSuccess: (data) => {
-        console.log(data);
+      onSuccess: () => {
+        handleListUserWaitToApply({ maKhoaHoc: courseID });
+        handleListUserApply({ maKhoaHoc: courseID });
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    });
+
+  const { mutate: handleCancelCourse, isPending: cancelCoursePending } =
+    useMutation({
+      mutationFn: (payload: { maKhoaHoc: string; taiKhoan: string }) => {
+        return cancelClassApi(payload);
+      },
+      onSuccess: () => {
         handleListUserWaitToApply({ maKhoaHoc: courseID });
         handleListUserApply({ maKhoaHoc: courseID });
       },
@@ -320,6 +387,31 @@ export default function CourseManagement() {
         <Typography.Paragraph>{hoTen}</Typography.Paragraph>
       ),
     },
+    {
+      title: "Thao tác",
+      render: (_: any, record: any) => (
+        <div className="flex justify-center">
+          <Space size="small">
+            <Popconfirm
+              title="Xóa"
+              description="Bạn muốn xóa học viên này khỏi khóa học?"
+              onConfirm={() => {
+                handleCancelCourse({
+                  maKhoaHoc: courseID,
+                  taiKhoan: record.taiKhoan,
+                });
+              }}
+              okText={<span>OK</span>}
+              cancelText="Huỷ"
+            >
+              <Button danger loading={cancelCoursePending}>
+                Xóa
+              </Button>
+            </Popconfirm>
+          </Space>
+        </div>
+      ),
+    },
   ];
 
   const handleDelete = (id: string | number) => {
@@ -328,7 +420,7 @@ export default function CourseManagement() {
 
   const hinhAnhValue = watch("hinhAnh");
 
-  const previewImage = (file: File) => {
+  const previewImage = (file: any) => {
     return URL.createObjectURL(file);
   };
 
@@ -336,6 +428,7 @@ export default function CourseManagement() {
     setFileList(info.fileList.slice(-1));
   };
 
+  // tự tạo mã khóa học
   const uuidv4 = () => {
     const uuid = "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (c) =>
       (
@@ -357,21 +450,36 @@ export default function CourseManagement() {
     formData.append("maNhom", formValues.maNhom);
     formData.append("ngayTao", formValues.ngayTao);
     formData.append("maDanhMucKhoaHoc", formValues.maDanhMucKhoaHoc);
-    formData.append("taiKhoanNguoiTao", formValues.taiKhoanNguoiTao);
+    
     if (dataEdit === undefined) {
       const newMaKhoaHoc = uuidv4();
       formValues.maKhoaHoc = newMaKhoaHoc;
+      formData.append("taiKhoanNguoiTao", currentUser.taiKhoan);
       formData.append("maKhoaHoc", formValues.maKhoaHoc);
       handleAddCourse(formData);
     } else {
+      formData.append("taiKhoanNguoiTao", (dataEdit as KhoaHoc).nguoiTao.taiKhoan)
       formData.append("maKhoaHoc", (dataEdit as KhoaHoc).maKhoaHoc);
       handleUpdateCourse(formData);
     }
-    console.log(formValues);
   };
 
-  const dataSource = data?.items || [];
-  const totalCount = data?.totalCount || 0;
+  const handleSearchChange = (e: any) => {
+    const { value } = e.target;
+    setSearchValue(value);
+    setCurrentPage(1);
+  };
+
+  const dataSearch = courseList?.filter((course) => {
+    return (
+      course.tenKhoaHoc.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
+    );
+  });
+  const totalCountSearch = dataSearch?.length;
+
+  const startIndex = (currentPage - 1) * PAGE_SIZE;
+  const endIndex = startIndex + PAGE_SIZE;
+  const paginatedData = dataSearch?.slice(startIndex, endIndex);
 
   return (
     <>
@@ -387,6 +495,15 @@ export default function CourseManagement() {
             },
           ]}
         />
+
+        <Input
+          placeholder="Nhập tên khóa học để tìm kiếm..."
+          prefix={<SearchOutlined />}
+          style={{ width: 300 }}
+          value={searchValue}
+          onChange={handleSearchChange}
+        />
+
         <Button
           type="primary"
           size="large"
@@ -406,22 +523,26 @@ export default function CourseManagement() {
           className="mt-2"
           columns={columns}
           rowKey={"maKhoaHoc"}
-          dataSource={dataSource}
+          dataSource={searchValue !== "" ? paginatedData : dataSource}
           pagination={false}
           scroll={{ x: 1280 }}
           loading={isLoading}
         />
-        <div className="flex float-end mt-4 pb-4">
+        <div className="flex mt-4 pb-4 justify-center">
           <Pagination
+            current={currentPage}
             defaultCurrent={currentPage}
-            total={totalCount}
+            total={searchValue !== "" ? totalCountSearch : totalCount}
             pageSize={PAGE_SIZE}
+            showSizeChanger={false}
             onChange={(page: number) => {
               setCurrentPage(page);
             }}
           />
         </div>
       </div>
+
+
       <Modal
         title={dataEdit !== undefined ? "Chỉnh sửa khóa học" : "Thêm khóa học"}
         centered
@@ -458,13 +579,20 @@ export default function CourseManagement() {
                 control={control}
                 render={({ field }) => {
                   return (
-                    <Input
-                      size="large"
-                      type="text"
-                      className="mt-1"
-                      placeholder="Bí danh"
-                      {...field}
-                    />
+                    <>
+                      <Input
+                        size="large"
+                        type="text"
+                        className="mt-1"
+                        placeholder="Bí danh"
+                        {...field}
+                      />
+                      {errors.biDanh && (
+                        <span className="errorMess">
+                          {errors.biDanh.message}
+                        </span>
+                      )}
+                    </>
                   );
                 }}
               />
@@ -478,12 +606,19 @@ export default function CourseManagement() {
                 control={control}
                 render={({ field }) => {
                   return (
-                    <Input
-                      size="large"
-                      className="mt-1"
-                      placeholder="Tên khóa học"
-                      {...field}
-                    />
+                    <>
+                      <Input
+                        size="large"
+                        className="mt-1"
+                        placeholder="Tên khóa học"
+                        {...field}
+                      />
+                      {errors.tenKhoaHoc && (
+                        <span className="errorMess">
+                          {errors.tenKhoaHoc.message}
+                        </span>
+                      )}
+                    </>
                   );
                 }}
               />
@@ -497,15 +632,22 @@ export default function CourseManagement() {
                 control={control}
                 render={({ field }) => {
                   return (
-                    <Input
-                      size="large"
-                      type="number"
-                      min={0}
-                      max={10}
-                      className="mt-1"
-                      placeholder="0 - 10"
-                      {...field}
-                    />
+                    <>
+                      <Input
+                        size="large"
+                        type="number"
+                        min={0}
+                        max={10}
+                        className="mt-1"
+                        placeholder="0 - 10"
+                        {...field}
+                      />
+                      {errors.danhGia && (
+                        <span className="errorMess">
+                          {errors.danhGia.message}
+                        </span>
+                      )}
+                    </>
                   );
                 }}
               />
@@ -519,14 +661,21 @@ export default function CourseManagement() {
                 control={control}
                 render={({ field }) => {
                   return (
-                    <Input
-                      size="large"
-                      type="number"
-                      min={0}
-                      className="mt-1"
-                      placeholder="Lượt xem"
-                      {...field}
-                    />
+                    <>
+                      <Input
+                        size="large"
+                        type="number"
+                        min={0}
+                        className="mt-1"
+                        placeholder="Lượt xem"
+                        {...field}
+                      />
+                      {errors.luotXem && (
+                        <span className="errorMess">
+                          {errors.luotXem.message}
+                        </span>
+                      )}
+                    </>
                   );
                 }}
               />
@@ -540,13 +689,20 @@ export default function CourseManagement() {
                 control={control}
                 render={({ field }) => {
                   return (
-                    <Input
-                      size="large"
-                      type="text"
-                      className="mt-1"
-                      placeholder="Ngày tạo"
-                      {...field}
-                    />
+                    <>
+                      <Input
+                        size="large"
+                        type="text"
+                        className="mt-1"
+                        placeholder="Ngày tạo"
+                        {...field}
+                      />
+                      {errors.ngayTao && (
+                        <span className="errorMess">
+                          {errors.ngayTao.message}
+                        </span>
+                      )}
+                    </>
                   );
                 }}
               />
@@ -556,6 +712,7 @@ export default function CourseManagement() {
                 Người tạo
               </label>
               <Controller
+                disabled
                 name="taiKhoanNguoiTao"
                 control={control}
                 render={({ field }) => {
@@ -598,6 +755,9 @@ export default function CourseManagement() {
                         { value: "GP10", label: "GP10" },
                       ]}
                     />
+                    {errors.maNhom && (
+                      <span className="errorMess">{errors.maNhom.message}</span>
+                    )}
                   </>
                 )}
               />
@@ -626,6 +786,11 @@ export default function CourseManagement() {
                         { value: "TuDuy", label: "Tư duy lập trình" },
                       ]}
                     />
+                    {errors.maDanhMucKhoaHoc && (
+                      <span className="errorMess">
+                        {errors.maDanhMucKhoaHoc.message}
+                      </span>
+                    )}
                   </>
                 )}
               />
@@ -637,20 +802,27 @@ export default function CourseManagement() {
                 control={control}
                 render={({ field: { onChange } }) => {
                   return (
-                    <Upload
-                      beforeUpload={() => {
-                        return false;
-                      }}
-                      fileList={fileList}
-                      showUploadList={false}
-                      multiple={false}
-                      onChange={({ file }) => {
-                        handleUploadChange({ fileList: [file] });
-                        onChange(file);
-                      }}
-                    >
-                      <Button icon={<UploadOutlined />}>Upload hình</Button>
-                    </Upload>
+                    <>
+                      <Upload
+                        beforeUpload={() => {
+                          return false;
+                        }}
+                        fileList={fileList}
+                        showUploadList={false}
+                        multiple={false}
+                        onChange={({ file }) => {
+                          handleUploadChange({ fileList: [file] });
+                          onChange(file);
+                        }}
+                      >
+                        <Button icon={<UploadOutlined />}>Upload hình</Button>
+                      </Upload>
+                      {errors.hinhAnh && (
+                        <span className="errorMess ml-3">
+                          {errors.hinhAnh.message}
+                        </span>
+                      )}
+                    </>
                   );
                 }}
               />
@@ -669,7 +841,7 @@ export default function CourseManagement() {
                   <span
                     className="block cursor-pointer mt-1"
                     style={{ color: "red", textAlign: "center" }}
-                    onClick={() => setValue("hinhAnh", undefined)}
+                    onClick={() => setValue("hinhAnh", "")}
                   >
                     <DeleteOutlined />
                   </span>
@@ -685,13 +857,20 @@ export default function CourseManagement() {
                 control={control}
                 render={({ field }) => {
                   return (
-                    <Input.TextArea
-                      size="large"
-                      rows={4}
-                      className="mt-1"
-                      placeholder="Nhập mô tả..."
-                      {...field}
-                    />
+                    <>
+                      <Input.TextArea
+                        size="large"
+                        rows={4}
+                        className="mt-1"
+                        placeholder="Nhập mô tả..."
+                        {...field}
+                      />
+                      {errors.moTa && (
+                        <span className="errorMess ml-3">
+                          {errors.moTa.message}
+                        </span>
+                      )}
+                    </>
                   );
                 }}
               />
@@ -699,7 +878,6 @@ export default function CourseManagement() {
             <Col span={24} className="text-end">
               <Button
                 loading={isPending}
-                disabled={isPending}
                 htmlType="submit"
                 size="large"
                 type="primary"
@@ -757,6 +935,7 @@ export default function CourseManagement() {
               Danh sách học viên đã xét duyệt
             </h4>
             <Table
+              loading={userDataPending}
               className="mt-2"
               columns={columnsUser}
               rowKey={"taiKhoan"}
@@ -817,7 +996,7 @@ export default function CourseManagement() {
         centered
       >
         <img src="./../../../../img/login-fail-icon.png" alt="" />
-        <p>Mã khóa học đã tồn tại.</p>
+        <p>Đã có lỗi xảy ra, vui lòng thử lại.</p>
         <Button
           className="tryAgainBtn mt-5"
           onClick={() => {

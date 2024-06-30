@@ -47,6 +47,15 @@ export interface UserInfo {
   tenLoaiNguoiDung: string;
 }
 
+export interface UserSearch {
+  taiKhoan:         string;
+  hoTen:            string;
+  soDt:             string;
+  email:            string;
+  maLoaiNguoiDung:  MaLoaiNguoiDung;
+  tenLoaiNguoiDung: string;
+}
+
 export enum MaLoaiNguoiDung {
   GV = "GV",
   Hv = "HV",

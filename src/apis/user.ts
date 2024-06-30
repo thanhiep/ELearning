@@ -1,5 +1,12 @@
 import { PAGE_SIZE } from "../constants";
-import { ThongTinTaiKhoan, User, UserAdd, UserPagination } from "../types/user.type";
+import {
+  ThongTinTaiKhoan,
+  User,
+  UserAdd,
+  UserInfo,
+  UserPagination,
+  UserSearch,
+} from "../types/user.type";
 import api from "./apiUtil";
 
 export const loginApi = async (payload: {
@@ -34,7 +41,7 @@ export const getUserProfileApi = async () => {
   }
 };
 
-export const getUserWaitToApplyApi = async (payload:{maKhoaHoc: string}) => {
+export const getUserWaitToApplyApi = async (payload: { maKhoaHoc: string }) => {
   try {
     const response = await api.post(
       `/QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet`,
@@ -46,7 +53,7 @@ export const getUserWaitToApplyApi = async (payload:{maKhoaHoc: string}) => {
   }
 };
 
-export const getUserApplyApi = async (payload:{maKhoaHoc: string}) => {
+export const getUserApplyApi = async (payload: { maKhoaHoc: string }) => {
   try {
     const response = await api.post(
       `/QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc`,
@@ -69,47 +76,69 @@ export const getUserListPaginationApi = async (currentPage: number) => {
   }
 };
 
-export const addUserApi = async (user: UserAdd)=>{
+export const addUserApi = async (user: UserAdd) => {
   try {
-    const response = await api.post(`QuanLyNguoiDung/ThemNguoiDung`,user)
+    const response = await api.post(`QuanLyNguoiDung/ThemNguoiDung`, user);
     return response.data;
-  } catch (error:any) {
-    throw Error(error)
+  } catch (error: any) {
+    throw Error(error);
   }
-}
+};
 
-export const deleteUserApi = async (taiKhoan: string) =>{
+export const deleteUserApi = async (taiKhoan: string) => {
   try {
-    const response = await api.delete(`QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`)
+    const response = await api.delete(
+      `QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`
+    );
     return response.data;
-  } catch (error:any) {
-    throw Error(error)
+  } catch (error: any) {
+    throw Error(error);
   }
-}
+};
 
-export const updateUserApi = async (user: UserAdd)=>{
+export const updateUserApi = async (user: UserAdd) => {
   try {
-    const response = await api.put(`QuanLyNguoiDung/CapNhatThongTinNguoiDung`,user)
+    const response = await api.put(
+      `QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
+      user
+    );
     return response.data;
-  } catch (error:any) {
-    throw Error(error)
+  } catch (error: any) {
+    throw Error(error);
   }
-}
+};
 
-export const getCourseWaitToAccept = async (payload:{taiKhoan:string}) =>{
+export const getCourseWaitToAccept = async (payload: { taiKhoan: string }) => {
   try {
-    const response = await api.post(`QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet`,payload)
+    const response = await api.post(
+      `QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet`,
+      payload
+    );
     return response.data;
-  } catch (error:any) {
-    throw Error(error)
+  } catch (error: any) {
+    throw Error(error);
   }
-}
+};
 
-export const getCourseAccept = async (payload: {taiKhoan:string})=>{
+export const getCourseAccept = async (payload: { taiKhoan: string }) => {
   try {
-    const response = await api.post(`QuanLyNguoiDung/LayDanhSachKhoaHocDaXetDuyet`,payload)
+    const response = await api.post(
+      `QuanLyNguoiDung/LayDanhSachKhoaHocDaXetDuyet`,
+      payload
+    );
     return response.data;
-  } catch (error:any) {
-    throw Error(error)
+  } catch (error: any) {
+    throw Error(error);
   }
-}
+};
+
+export const getUserListApi = async () => {
+  try {
+    const response = await api.get<UserSearch[]>(
+      `QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01`
+    );
+    return response.data;
+  } catch (error: any) {
+    throw Error(error);
+  }
+};

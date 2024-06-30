@@ -4,6 +4,7 @@ import {
   MenuUnfoldOutlined,
   UserOutlined,
   ReadOutlined,
+  ToolOutlined,
 } from "@ant-design/icons";
 import { Avatar, Button, Dropdown, Layout, Menu, theme } from "antd";
 import {
@@ -28,19 +29,18 @@ export default function AdminLayout() {
 
   const dispatch = useAppDispatch()
 
+  const handleLogOut = () =>{
+    dispatch(logOut())
+    localStorage.removeItem("user")
+  }
+
   const items = [
     {
       key: "1",
-      label: <span> Cài đặt tài khoản </span>,
-    },
-    {
-      key: "2",
-      label: <span onClick={()=>{
-        dispatch(logOut())
-        localStorage.removeItem("user")
-      }}>Đăng xuất</span>,
+      label: <Button onClick={handleLogOut}>Đăng xuất</Button>,
     },
   ];
+
 
   return (
     <Layout className="h-screen">
@@ -66,7 +66,11 @@ export default function AdminLayout() {
               icon: <ReadOutlined />,
               label: "Quản lý khóa học",
             },
-
+            {
+              key: "/admin/setting",
+              icon: <ToolOutlined />,
+              label: "Cài đặt tài khoản",
+            },
           ]}
           onClick={({ key }) => navigate(key)}
         />
