@@ -957,7 +957,7 @@ export default function CourseManagement() {
         closable={false}
         centered
       >
-        <img src="./../../../../img/successIcon.png" alt="" />
+        <img src="src/assets/img/successIcon.png" alt="" />
         <p>Bạn đã xóa khóa học thành công</p>
         <Button
           className="tryAgainBtn mt-5"
@@ -977,7 +977,7 @@ export default function CourseManagement() {
         closable={false}
         centered
       >
-        <img src="./../../../../img/login-fail-icon.png" alt="" />
+        <img src="src/assets/img/login-fail-icon.png" alt="" />
         <p>Không thể xóa khóa học đã có học viên ghi danh.</p>
         <Button
           className="tryAgainBtn mt-5"
@@ -997,7 +997,7 @@ export default function CourseManagement() {
         closable={false}
         centered
       >
-        <img src="./../../../../img/login-fail-icon.png" alt="" />
+        <img src="src/assets/img/login-fail-icon.png" alt="" />
         <p>Đã có lỗi xảy ra, vui lòng thử lại.</p>
         <Button
           className="tryAgainBtn mt-5"

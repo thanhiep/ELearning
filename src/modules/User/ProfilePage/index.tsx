@@ -28,7 +28,7 @@ export default function ProfilePage() {
           <Col xs={24} md={8}>
             <div className="profileContent">
               <h3>Thông tin tài khoản</h3>
-              <img src="./../../../../img/avartarIcon.jpg" alt="avartar" />
+              <img src="src/assets/img/avartarIcon.jpg" alt="avartar" />
               <div className="profileTextBox">
               <div className="profileText">
                 <p><span>Họ tên: </span> {data.hoTen}</p>

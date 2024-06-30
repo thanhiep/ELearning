@@ -382,7 +382,7 @@ export default function ProfileManagement() {
         closable={false}
         centered
       >
-        <img src="./../../../../img/successIcon.png" alt="" />
+        <img src="src/assets/img/successIcon.png" alt="" />
         <p>Cập nhật thông tin cá nhân thành công.</p>
         <Button
           className="tryAgainBtn mt-5"

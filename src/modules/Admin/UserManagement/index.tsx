@@ -68,7 +68,7 @@ export default function UserManagement() {
     resolver: yupResolver(SCHEMA_USER_FORM),
   });
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["list-user-pagination", { currentPage }],
     queryFn: () => getUserListPaginationApi(currentPage),
   });
@@ -87,7 +87,7 @@ export default function UserManagement() {
     mutationFn: (user: UserAdd) => {
       return addUserApi(user);
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       setIsOpenModal(false);
       queryClient.refetchQueries({
         queryKey: ["list-user-pagination", { currentPage }],
@@ -111,7 +111,7 @@ export default function UserManagement() {
         type: "active",
       });
     },
-    onError: (error) => {
+    onError: () => {
       setIsDeleteFail(true);
     },
   });
@@ -339,7 +339,7 @@ export default function UserManagement() {
               okText={<span>OK</span>}
               cancelText="Huỷ"
             >
-              <Button type="primary">Duyệt</Button>
+              <Button type="primary" loading={acceptCoursePending}>Duyệt</Button>
             </Popconfirm>
           </Space>
         </div>
@@ -680,7 +680,7 @@ export default function UserManagement() {
               />
             </Col>
             <Col span={24} className="text-end mt-5">
-              <Button htmlType="submit" size="large" type="primary">
+              <Button htmlType="submit" size="large" type="primary" loading={isPending}>
                 {dataEdit !== undefined ? "Cập nhật" : "Thêm người dùng"}
               </Button>
             </Col>
@@ -751,7 +751,7 @@ export default function UserManagement() {
         closable={false}
         centered
       >
-        <img src="./../../../../img/successIcon.png" alt="" />
+        <img src="src/assets/img/successIcon.png" alt="" />
         <p>Bạn đã xóa người dùng thành công</p>
         <Button
           className="tryAgainBtn mt-5"
@@ -771,7 +771,7 @@ export default function UserManagement() {
         closable={false}
         centered
       >
-        <img src="./../../../../img/login-fail-icon.png" alt="" />
+        <img src="src/assets/img/login-fail-icon.png" alt="" />
         <p>Không thể xóa người dùng đã đăng ký khóa học.</p>
         <Button
           className="tryAgainBtn mt-5"
@@ -791,7 +791,7 @@ export default function UserManagement() {
         closable={false}
         centered
       >
-        <img src="./../../../../img/login-fail-icon.png" alt="" />
+        <img src="src/assets/img/login-fail-icon.png" alt="" />
         <p>Tài khoản hoặc email đã tồn tại, vui lòng thử lại.</p>
         <Button
           className="tryAgainBtn mt-5"

@@ -1,6 +1,7 @@
 import { Col, Row } from "antd";
 import "./style.css";
 
+
 export default function AboutPage() {
   return (
     <div className="about">
@@ -15,7 +16,7 @@ export default function AboutPage() {
         <Row>
           <Col xs={24} md={12} className="bgAboutBlue">
             <img
-              src="img/about/education-hero.png"
+              src={"src/assets/img/about/education-hero.png"}
               alt=""
             />
           </Col>
@@ -49,7 +50,7 @@ export default function AboutPage() {
             </p>
           </Col>
           <Col xs={24} md={12} className="bgAboutGreen">
-            <img src="img/about/hero-flex.png" alt="" />
+            <img src="src/assets/img/about/hero-flex.png" alt="" />
           </Col>
         </Row>
       </div>
@@ -57,7 +58,7 @@ export default function AboutPage() {
         <Row>
           <Col xs={24} md={12} className="bgAboutGreen">
             <img
-              src="img/about/olstudy.png"
+              src="src/assets/img/about/olstudy.png"
               alt=""
             />
           </Col>
@@ -80,7 +81,7 @@ export default function AboutPage() {
             </p>
           </Col>
           <Col xs={24} md={12} className="bgAboutBlue">
-            <img src="img/about/students.png" alt="" />
+            <img src="src/assets/img/about/students.png" alt="" />
           </Col>
         </Row>
       </div>

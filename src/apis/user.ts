@@ -3,7 +3,6 @@ import {
   ThongTinTaiKhoan,
   User,
   UserAdd,
-  UserInfo,
   UserPagination,
   UserSearch,
 } from "../types/user.type";

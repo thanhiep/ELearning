@@ -98,7 +98,7 @@ export default function Course(props: Props) {
         className="authModal registerModal"
         centered
       >
-        <img src="./../../../../img/questionIcon.jpg" alt="" />
+        <img src="src/assets/img/questionIcon.jpg" alt="" />
         <p>
           Bạn muốn hủy đăng ký khóa học{" "}
           <span style={{ fontWeight: "600", color: "#41b294" }}>
@@ -131,7 +131,7 @@ export default function Course(props: Props) {
         closable={false}
         centered
       >
-        <img src="./../../../../img/successIcon.png" alt="" />
+        <img src="src/assets/img/successIcon.png" alt="" />
         <p>Bạn đã hủy khóa học, hẹn gặp lại bạn ở các khóa học khác.</p>
         <Button
           className="tryAgainBtn mt-5 mr-5"

@@ -147,7 +147,7 @@ export default function LoginPage() {
         closable={false}
         centered
       >
-        <img src="./../../../../img/login-fail-icon.png" alt="" />
+        <img src="src/assets/img/login-fail-icon.png" alt="" />
         <p>Tài khoản hoặc mật khẩu không đúng, vui lòng thử lại.</p>
         <Button className="tryAgainBtn mt-5" onClick={handleTryAgain}>Thử lại</Button>
       </Modal>

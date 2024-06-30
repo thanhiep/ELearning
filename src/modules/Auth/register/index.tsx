@@ -273,7 +273,7 @@ export default function RegisterPage() {
         closable={false}
         centered
       >
-        <img src="./../../../../img/successIcon.png" alt="" />
+        <img src="src/assets/img/successIcon.png" alt="" />
         <p>Bạn đã tạo tài khoản thành công, vui lòng đăng nhập.</p>
         <Button
           className="tryAgainBtn mt-5"
@@ -293,7 +293,7 @@ export default function RegisterPage() {
         closable={false}
         centered
       >
-        <img src="./../../../../img/login-fail-icon.png" alt="" />
+        <img src="src/assets/img/login-fail-icon.png" alt="" />
         <p>Tài khoản hoặc email đã tồn tại, vui lòng thử lại.</p>
         <Button
           className="tryAgainBtn mt-5"

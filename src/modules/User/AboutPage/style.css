@@ -1,5 +1,5 @@
 .aboutBanner {
-    background-image: url(img/about/bgAbout.png);
+    background-image: url(src/assets/img/about/bgAbout.png);
     background-position: 50%;
     padding: 150px 0;
     background-size: cover;
@@ -35,14 +35,14 @@
 }
 
 .bgAboutBlue{
-    background-image: url(img/about/bgBlue.svg);
+    background-image: url(src/assets/img/about/bgBlue.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 50%;
 }
 
 .bgAboutGreen{
-    background-image: url(img/about/bgGreen.svg);
+    background-image: url(src/assets/img/about/bgGreen.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 50%;

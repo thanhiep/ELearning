@@ -88,7 +88,7 @@ export default function HeaderComponent() {
     <div className={`header ${isScrolled ? "headerScroll" : ""}`}>
       <div className="nav container mx-auto">
         <NavLink to={"/"}>
-          <img className="logo" src="./../../../../img/logoelearning.png" />
+          <img className="logo" src="src/assets/img/logoelearning.png" />
         </NavLink>
 
         <ul className="nav-bar">
@@ -144,7 +144,7 @@ export default function HeaderComponent() {
           <div>
             {currentUser.maLoaiNguoiDung === "GV" ? <Link style={{fontSize:"20px", paddingRight:"16px"}} to={"/admin/user"}><FontAwesomeIcon icon={faGear}/></Link> : ""}
             <Link to={"/profile"}>
-              <Avatar src="./../../../../img/avartarIcon.jpg" />
+              <Avatar src="src/assets/img/avartarIcon.jpg" />
               <span className="headerUsername">{currentUser.taiKhoan}</span>
             </Link>
             <Button className="logOutBtn" onClick={handleLogOut}>
