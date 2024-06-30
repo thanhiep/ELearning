@@ -15,6 +15,7 @@ import {
 } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hook";
 import { logOut } from "../../redux/slices/user.slice";
+import logoELearning from "./../../assets/img/logoelearning.png"
 
 const { Header, Sider, Content } = Layout;
 
@@ -47,7 +48,7 @@ export default function AdminLayout() {
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <Link to={"/admin"}>
           <div className="h-[72px] my-1 text-white flex items-center justify-center">
-            <img src="/vite.svg" width={55} className="cursor-pointer" />
+            <img src={logoELearning} width={55} className="cursor-pointer" />
           </div>
         </Link>
         <Menu

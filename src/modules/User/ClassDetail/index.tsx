@@ -22,6 +22,7 @@ import { useState } from "react";
 import "./../../Auth/style.css";
 import { getUserProfileApi } from "../../../apis/user";
 import successIcon from "./../../../assets/img/successIcon.png"
+import intrutor05 from "./../../../assets/img/instrutor5.jpg"
 
 export default function ClassDetail() {
   const { id } = useParams();
@@ -171,7 +172,7 @@ export default function ClassDetail() {
             <Row className="headClassDetail">
               <Col span={8}>
                 <div className="classDetailIntro">
-                  <img src="./../../../../img/instrutor5.jpg" alt="" />
+                  <img src={intrutor05} alt="" />
                   <div className="instrutorTitle">
                     <p>Giảng viên</p>
                     <p>Robert Lê Văn</p>
