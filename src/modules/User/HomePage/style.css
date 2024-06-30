@@ -148,7 +148,7 @@
 .introLargeItem {
   grid-row: 1 / span 2;
   background-color: #41b294;
-  background-image: url(src/assets/img/astronaut.png);
+  background-image: url(./../../../assets/img/astronaut.png);
   background-position: 100% 80%;
   background-size: 50%;
   background-repeat: no-repeat;

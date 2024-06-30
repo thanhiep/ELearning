@@ -1,5 +1,5 @@
 import { Col, Row, Button } from "antd";
-import bannerELearning from "src/assets/img/bannerelearning.png"
+import bannerELearning from "./../../../assets/img/bannerelearning.png"
 
 export default function Banner() {
   return (
