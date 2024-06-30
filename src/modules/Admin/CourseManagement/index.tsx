@@ -49,10 +49,12 @@ const schema = yup.object({
   moTa: yup.string().required("(*) Vui lòng nhập mô tả"),
   luotXem: yup
     .number()
-    .typeError("(*) Vui lòng nhập số"),
+    .typeError("(*) Vui lòng nhập số")
+    .required("(*) Vui lòng nhập lượt xem"),
   danhGia: yup
     .number()
     .typeError("(*) Vui lòng nhập một số từ 0 - 10")
+    .required("(*) Vui lòng nhập đánh giá từ 0 - 10")
     .min(0, "(*) Đánh giá phải từ 0 - 10")
     .max(10, "(*) Đánh giá phải từ 0 - 10"),
   maNhom: yup.string().required("(*) Vui lòng chọn mã nhóm"),
