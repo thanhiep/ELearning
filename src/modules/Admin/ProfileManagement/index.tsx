@@ -8,6 +8,8 @@ import { useState } from "react";
 import * as yup from "yup";
 import { EMAIL_REGEX, PHONE_REGEX, VIETNAMESE_REGEX } from "../../../constants";
 import { FormOutlined, RollbackOutlined } from "@ant-design/icons";
+import successIcon from "./../../../assets/img/successIcon.png"
+import avatarIcon from "./../../../assets/img/avartarIcon.jpg"
 
 const schema = yup.object({
   hoTen: yup
@@ -119,7 +121,7 @@ export default function ProfileManagement() {
             <Col xs={24} md={8}>
               <div className="profileContent">
                 <h3>Thông tin tài khoản</h3>
-                <img src="./../../../../img/avartarIcon.jpg" alt="avartar" />
+                <img src={avatarIcon} alt="avartar" />
                 <div className="profileTextBox">
                   <div className="profileText">
                     <p>
@@ -382,7 +384,7 @@ export default function ProfileManagement() {
         closable={false}
         centered
       >
-        <img src="src/assets/img/successIcon.png" alt="" />
+        <img src={successIcon} alt="" />
         <p>Cập nhật thông tin cá nhân thành công.</p>
         <Button
           className="tryAgainBtn mt-5"

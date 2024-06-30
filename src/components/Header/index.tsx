@@ -10,6 +10,8 @@ import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket, faGear } from "@fortawesome/free-solid-svg-icons";
 import { logOut } from "../../redux/slices/user.slice";
+import logoELearning from "./../../assets/img/logoelearning.png"
+import avatarIcon from "./../../assets/img/avartarIcon.jpg"
 
 export default function HeaderComponent() {
   const [visible, setVisible] = useState(false);
@@ -88,7 +90,7 @@ export default function HeaderComponent() {
     <div className={`header ${isScrolled ? "headerScroll" : ""}`}>
       <div className="nav container mx-auto">
         <NavLink to={"/"}>
-          <img className="logo" src="src/assets/img/logoelearning.png" />
+          <img className="logo" src={logoELearning}/>
         </NavLink>
 
         <ul className="nav-bar">
@@ -144,7 +146,7 @@ export default function HeaderComponent() {
           <div>
             {currentUser.maLoaiNguoiDung === "GV" ? <Link style={{fontSize:"20px", paddingRight:"16px"}} to={"/admin/user"}><FontAwesomeIcon icon={faGear}/></Link> : ""}
             <Link to={"/profile"}>
-              <Avatar src="src/assets/img/avartarIcon.jpg" />
+              <Avatar src={avatarIcon} />
               <span className="headerUsername">{currentUser.taiKhoan}</span>
             </Link>
             <Button className="logOutBtn" onClick={handleLogOut}>

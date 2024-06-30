@@ -32,6 +32,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { acceptUserApi, cancelClassApi } from "../../../apis/class";
 import { SearchOutlined } from "@ant-design/icons";
 import { SCHEMA_USER_FORM } from "../../../constants/yupGlobal";
+import successIcon from "./../../../assets/img/successIcon.png"
+import failIcon from "./../../../assets/img/login-fail-icon.png"
 
 export default function UserManagement() {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -751,7 +753,7 @@ export default function UserManagement() {
         closable={false}
         centered
       >
-        <img src="src/assets/img/successIcon.png" alt="" />
+        <img src={successIcon} alt="" />
         <p>Bạn đã xóa người dùng thành công</p>
         <Button
           className="tryAgainBtn mt-5"
@@ -771,7 +773,7 @@ export default function UserManagement() {
         closable={false}
         centered
       >
-        <img src="src/assets/img/login-fail-icon.png" alt="" />
+        <img src={failIcon} alt="" />
         <p>Không thể xóa người dùng đã đăng ký khóa học.</p>
         <Button
           className="tryAgainBtn mt-5"
@@ -791,7 +793,7 @@ export default function UserManagement() {
         closable={false}
         centered
       >
-        <img src="src/assets/img/login-fail-icon.png" alt="" />
+        <img src={failIcon} alt="" />
         <p>Tài khoản hoặc email đã tồn tại, vui lòng thử lại.</p>
         <Button
           className="tryAgainBtn mt-5"

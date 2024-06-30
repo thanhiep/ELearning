@@ -1,4 +1,5 @@
 import { Col, Row } from "antd";
+import avatarReview from "./../../../assets/img/avatarReview.png"
 
 export default function Review() {
   return (
@@ -8,7 +9,7 @@ export default function Review() {
                 <Col xs={24} lg={8}>
                     <div className="reviewImg">
                         <div className="bgStudentReview"></div>
-                        <img src="src/assets/img/avatarReview.png" alt="" />
+                        <img src={avatarReview} alt="" />
                     </div>
                 </Col>
                 <Col xs={24} lg={16} className="quoteRight">

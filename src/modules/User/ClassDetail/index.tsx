@@ -21,6 +21,7 @@ import { useAppSelector } from "../../../redux/hook";
 import { useState } from "react";
 import "./../../Auth/style.css";
 import { getUserProfileApi } from "../../../apis/user";
+import successIcon from "./../../../assets/img/successIcon.png"
 
 export default function ClassDetail() {
   const { id } = useParams();
@@ -455,7 +456,7 @@ export default function ClassDetail() {
         closable={false}
         centered
       >
-        <img src="./../../../../img/successIcon.png" alt="" />
+        <img src={successIcon} alt="" />
         <p>
           Bạn đã đăng ký khóa học thành công, nhấn nút bên dưới để xem thêm chi
           tiết.

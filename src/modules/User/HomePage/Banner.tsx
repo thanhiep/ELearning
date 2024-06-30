@@ -1,5 +1,9 @@
 import { Col, Row, Button } from "antd";
 import bannerELearning from "./../../../assets/img/bannerelearning.png"
+import plane from "./../../../assets/img/plane.png"
+import cloud from "./../../../assets/img/cloud.png"
+import codeSlider from "./../../../assets/img/code_slider.png"
+import messSlider from "./../../../assets/img/message_slider.png"
 
 export default function Banner() {
   return (
@@ -8,7 +12,7 @@ export default function Banner() {
         <div className="textLeft">
           <img
             className="planeSlide"
-            src="src/assets/img/plane.png"
+            src={plane}
             alt="plane"
           />
           <h1>
@@ -30,27 +34,27 @@ export default function Banner() {
             className="w-full"
           />
           <img
-            src="src/assets/img/code_slider.png"
+            src={codeSlider}
             alt="code_slider"
             className="sliderSubImg codeSlider"
           />
           <img
-            src="src/assets/img/message_slider.png"
+            src={messSlider}
             alt="message_slider"
             className="sliderSubImg messSlider"
           />
           <img
-            src="src/assets/img/cloud.png"
+            src={cloud}
             alt="cloud"
             className="sliderSubImg cloudSlider"
           />
           <img
-            src="src/assets/img/cloud.png"
+            src={cloud}
             alt="cloud"
             className="sliderSubImg cloudSlider2"
           />
           <img
-            src="src/assets/img/cloud.png"
+            src={cloud}
             alt="cloud"
             className="sliderSubImg cloudSlider3"
           />

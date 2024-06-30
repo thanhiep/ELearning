@@ -9,6 +9,7 @@ import "./../style.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+import failIcon from "./../../../assets/img/login-fail-icon.png"
 
 const schema = yup.object({
   taiKhoan: yup.string().required("(*) Vui lòng nhập tài khoản"),
@@ -147,7 +148,7 @@ export default function LoginPage() {
         closable={false}
         centered
       >
-        <img src="src/assets/img/login-fail-icon.png" alt="" />
+        <img src={failIcon} alt="" />
         <p>Tài khoản hoặc mật khẩu không đúng, vui lòng thử lại.</p>
         <Button className="tryAgainBtn mt-5" onClick={handleTryAgain}>Thử lại</Button>
       </Modal>

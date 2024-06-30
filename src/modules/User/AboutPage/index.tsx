@@ -1,6 +1,9 @@
 import { Col, Row } from "antd";
 import "./style.css";
-
+import heroEducation from "./../../../assets/img/about/education-hero.png"
+import heroFlex from "./../../../assets/img/about/hero-flex.png"
+import olstudyImg from "./../../../assets/img/about/olstudy.png"
+import studentImg from "./../../../assets/img/about/students.png"
 
 export default function AboutPage() {
   return (
@@ -16,7 +19,7 @@ export default function AboutPage() {
         <Row>
           <Col xs={24} md={12} className="bgAboutBlue">
             <img
-              src={"src/assets/img/about/education-hero.png"}
+              src={heroEducation}
               alt=""
             />
           </Col>
@@ -50,7 +53,7 @@ export default function AboutPage() {
             </p>
           </Col>
           <Col xs={24} md={12} className="bgAboutGreen">
-            <img src="src/assets/img/about/hero-flex.png" alt="" />
+            <img src={heroFlex} alt="" />
           </Col>
         </Row>
       </div>
@@ -58,7 +61,7 @@ export default function AboutPage() {
         <Row>
           <Col xs={24} md={12} className="bgAboutGreen">
             <img
-              src="src/assets/img/about/olstudy.png"
+              src={olstudyImg}
               alt=""
             />
           </Col>
@@ -81,7 +84,7 @@ export default function AboutPage() {
             </p>
           </Col>
           <Col xs={24} md={12} className="bgAboutBlue">
-            <img src="src/assets/img/about/students.png" alt="" />
+            <img src={studentImg} alt="" />
           </Col>
         </Row>
       </div>

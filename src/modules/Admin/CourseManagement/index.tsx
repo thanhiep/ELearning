@@ -38,6 +38,8 @@ import { useAppSelector } from "../../../redux/hook";
 import { getUserApplyApi, getUserWaitToApplyApi } from "../../../apis/user";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import successIcon from "./../../../assets/img/successIcon.png"
+import failIcon from "./../../../assets/img/login-fail-icon.png"
 
 const schema = yup.object({
   maKhoaHoc: yup.string(),
@@ -957,7 +959,7 @@ export default function CourseManagement() {
         closable={false}
         centered
       >
-        <img src="src/assets/img/successIcon.png" alt="" />
+        <img src={successIcon} alt="" />
         <p>Bạn đã xóa khóa học thành công</p>
         <Button
           className="tryAgainBtn mt-5"
@@ -977,7 +979,7 @@ export default function CourseManagement() {
         closable={false}
         centered
       >
-        <img src="src/assets/img/login-fail-icon.png" alt="" />
+        <img src={failIcon} alt="" />
         <p>Không thể xóa khóa học đã có học viên ghi danh.</p>
         <Button
           className="tryAgainBtn mt-5"
@@ -997,7 +999,7 @@ export default function CourseManagement() {
         closable={false}
         centered
       >
-        <img src="src/assets/img/login-fail-icon.png" alt="" />
+        <img src={failIcon} alt="" />
         <p>Đã có lỗi xảy ra, vui lòng thử lại.</p>
         <Button
           className="tryAgainBtn mt-5"

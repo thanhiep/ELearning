@@ -1,5 +1,9 @@
 import { Col, Row } from "antd";
 import CountUp from "react-countup";
+import studentImg from "./../../../assets/img/003-students.png"
+import hourGlassImg from "./../../../assets/img/002-hourglass.png"
+import teacherImg from "./../../../assets/img/004-teacher.png"
+import timeImg from "./../../../assets/img/001-timetable.png"
 
 export default function CountUpComponent() {
   return (
@@ -10,7 +14,7 @@ export default function CountUpComponent() {
             <div className="countUpItem">
               <img
                 className="countUpImg"
-                src="src/assets/img/003-students.png"
+                src={studentImg}
                 alt=""
               />
               <div className="countUpText">
@@ -26,7 +30,7 @@ export default function CountUpComponent() {
             <div className="countUpItem">
               <img
                 className="countUpImg"
-                src="src/assets/img/001-timetable.png"
+                src={timeImg}
                 alt=""
               />
               <div className="countUpText">
@@ -42,7 +46,7 @@ export default function CountUpComponent() {
             <div className="countUpItem">
               <img
                 className="countUpImg"
-                src="src/assets/img/002-hourglass.png"
+                src={hourGlassImg}
                 alt=""
               />
               <div className="countUpText">
@@ -58,7 +62,7 @@ export default function CountUpComponent() {
             <div className="countUpItem">
               <img
                 className="countUpImg"
-                src="src/assets/img/004-teacher.png"
+                src={teacherImg}
                 alt=""
               />
               <div className="countUpText">

@@ -1,5 +1,18 @@
 import { Button, Col, Row } from "antd";
 import "./style.css";
+import itImg from "./../../../assets/img/event/it.png"
+import intrutor05 from "./../../../assets/img/instrutor5.jpg"
+import intrutor06 from "./../../../assets/img/instrutor6.jpg"
+import intrutor07 from "./../../../assets/img/instrutor7.jpg"
+import intrutor08 from "./../../../assets/img/instrutor8.jpg"
+import intrutor09 from "./../../../assets/img/instrutor9.jpg"
+import intrutor10 from "./../../../assets/img/instrutor10.jpg"
+import intrutor11 from "./../../../assets/img/instrutor11.jpg"
+import intrutor12 from "./../../../assets/img/instrutor12.jpg"
+import meta from "./../../../assets/img/event/meta.jpg"
+import microsoft from "./../../../assets/img/event/microsoft.jpg"
+import google from "./../../../assets/img/event/Google-logo.jpg"
+import amazon from "./../../../assets/img/event/amazon.jpg"
 
 export default function EventPage() {
   return (
@@ -41,7 +54,7 @@ export default function EventPage() {
           <Col xs={24} md={12} className="eventImg">
             <img
               className="eventImgAni"
-              src="src/assets/img/event/it.png"
+              src={itImg}
               alt=""
             />
           </Col>
@@ -65,56 +78,56 @@ export default function EventPage() {
         <Row className="speechDetail" gutter={40}>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <div className="speecherCard">
-                    <img src="src/assets/img/instrutor5.jpg" alt="" />
+                    <img src={intrutor05} alt="" />
                     <h6>Nguyễn Nhật</h6>
                     <p>CEO TechViet Production</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <div className="speecherCard">
-                    <img src="src/assets/img/instrutor6.jpg" alt="" />
+                    <img src={intrutor06} alt="" />
                     <h6>Nguyễn Nhật</h6>
                     <p>CEO TechViet Production</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <div className="speecherCard">
-                    <img src="src/assets/img/instrutor7.jpg" alt="" />
+                    <img src={intrutor07} alt="" />
                     <h6>Nguyễn Nam</h6>
                     <p>CEO TechViet Production</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <div className="speecherCard">
-                    <img src="src/assets/img/instrutor8.jpg" alt="" />
+                    <img src={intrutor08} alt="" />
                     <h6>Long Le</h6>
                     <p>CEO TechViet Production</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <div className="speecherCard">
-                    <img src="src/assets/img/instrutor9.jpg" alt="" />
+                    <img src={intrutor09} alt="" />
                     <h6>Johny Musk</h6>
                     <p>CEO TechViet Production</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <div className="speecherCard">
-                    <img src="src/assets/img/instrutor10.jpg" alt="" />
+                    <img src={intrutor10} alt="" />
                     <h6>Vương Phạm</h6>
                     <p>CEO TechViet Production</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <div className="speecherCard">
-                    <img src="src/assets/img/instrutor11.jpg" alt="" />
+                    <img src={intrutor11} alt="" />
                     <h6>Jessica Dao</h6>
                     <p>CEO TechViet Production</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <div className="speecherCard">
-                    <img src="src/assets/img/instrutor12.jpg" alt="" />
+                    <img src={intrutor12} alt="" />
                     <h6>Mark Pug</h6>
                     <p>CEO TechViet Production</p>
                 </div>
@@ -126,25 +139,25 @@ export default function EventPage() {
         <Row gutter={40}>
             <Col xs={24} md={12} lg={6}>
                 <div className="donorsItem">
-                    <img src="src/assets/img/event/meta.jpg" alt="" />
+                    <img src={meta} alt="" />
                     <p>Facebook</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={6}>
                 <div className="donorsItem">
-                    <img src="src/assets/img/event/microsoft.jpg" alt="" />
+                    <img src={microsoft} alt="" />
                     <p>Microsoft</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={6}>
                 <div className="donorsItem">
-                    <img src="src/assets/img/event/Google-logo.jpg" alt="" />
+                    <img src={google} alt="" />
                     <p>Google</p>
                 </div>
             </Col>
             <Col xs={24} md={12} lg={6}>
                 <div className="donorsItem">
-                    <img src="src/assets/img/event/amazon.jpg" alt="" />
+                    <img src={amazon} alt="" />
                     <p>Amazon</p>
                 </div>
             </Col>

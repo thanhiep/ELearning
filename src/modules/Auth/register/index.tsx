@@ -13,6 +13,8 @@ import {
   PHONE_REGEX,
   VIETNAMESE_REGEX,
 } from "../../../constants";
+import successIcon from "./../../../assets/img/successIcon.png"
+import failIcon from "./../../../assets/img/login-fail-icon.png"
 
 const schema = yup.object({
   hoTen: yup
@@ -273,7 +275,7 @@ export default function RegisterPage() {
         closable={false}
         centered
       >
-        <img src="src/assets/img/successIcon.png" alt="" />
+        <img src={successIcon} alt="" />
         <p>Bạn đã tạo tài khoản thành công, vui lòng đăng nhập.</p>
         <Button
           className="tryAgainBtn mt-5"
@@ -293,7 +295,7 @@ export default function RegisterPage() {
         closable={false}
         centered
       >
-        <img src="src/assets/img/login-fail-icon.png" alt="" />
+        <img src={failIcon} alt="" />
         <p>Tài khoản hoặc email đã tồn tại, vui lòng thử lại.</p>
         <Button
           className="tryAgainBtn mt-5"

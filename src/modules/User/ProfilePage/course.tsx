@@ -8,6 +8,8 @@ import { cancelClassApi } from "../../../apis/class";
 import { useState } from "react";
 import { useAppSelector } from "../../../redux/hook";
 import { useNavigate } from "react-router-dom";
+import successIcon from "./../../../assets/img/successIcon.png"
+import questionIcon from "./../../../assets/img/questionIcon.jpg"
 
 type Props = {
   course: ChiTietKhoaHocGhiDanh;
@@ -98,7 +100,7 @@ export default function Course(props: Props) {
         className="authModal registerModal"
         centered
       >
-        <img src="src/assets/img/questionIcon.jpg" alt="" />
+        <img src={questionIcon} alt="" />
         <p>
           Bạn muốn hủy đăng ký khóa học{" "}
           <span style={{ fontWeight: "600", color: "#41b294" }}>
@@ -131,7 +133,7 @@ export default function Course(props: Props) {
         closable={false}
         centered
       >
-        <img src="src/assets/img/successIcon.png" alt="" />
+        <img src={successIcon} alt="" />
         <p>Bạn đã hủy khóa học, hẹn gặp lại bạn ở các khóa học khác.</p>
         <Button
           className="tryAgainBtn mt-5 mr-5"

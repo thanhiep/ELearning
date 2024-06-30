@@ -1,6 +1,12 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Col, Row } from "antd";
+import intrutor05 from "./../../../assets/img/instrutor5.jpg";
+import intrutor06 from "./../../../assets/img/instrutor6.jpg"
+import intrutor07 from "./../../../assets/img/instrutor7.jpg"
+import intrutor08 from "./../../../assets/img/instrutor8.jpg"
+import intrutor09 from "./../../../assets/img/instrutor9.jpg"
+import intrutor10 from "./../../../assets/img/instrutor10.jpg"
 
 export default function Teacher() {
   return (
@@ -10,7 +16,7 @@ export default function Teacher() {
             <Row>
                 <Col xs={24} sm={12} md={8} lg={4}>
                     <div className="teacherContent">
-                        <img src="src/assets/img/instrutor5.jpg" alt="" />
+                        <img src={intrutor05} alt="" />
                         <h6>Big DadMon</h6>
                         <div className="textReviewRole">
                             <p>Chuyên gia lĩnh vực</p>
@@ -29,7 +35,7 @@ export default function Teacher() {
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={4}>
                     <div className="teacherContent">
-                        <img src="src/assets/img/instrutor6.jpg" alt="" />
+                        <img src={intrutor06} alt="" />
                         <h6>IcarDi MenBor</h6>
                         <div className="textReviewRole">
                             <p>Chuyên gia ngôn ngữ</p>
@@ -48,7 +54,7 @@ export default function Teacher() {
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={4}>
                     <div className="teacherContent">
-                        <img src="src/assets/img/instrutor7.jpg" alt="" />
+                        <img src={intrutor07} alt="" />
                         <h6>Bladin Slaham</h6>
                         <div className="textReviewRole">
                             <p>Chuyên gia hệ thống</p>
@@ -67,7 +73,7 @@ export default function Teacher() {
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={4}>
                     <div className="teacherContent">
-                        <img src="src/assets/img/instrutor8.jpg" alt="" />
+                        <img src={intrutor08} alt="" />
                         <h6>Chris Andersan</h6>
                         <div className="textReviewRole">
                             <p>Chuyên gia lĩnh vực</p>
@@ -86,7 +92,7 @@ export default function Teacher() {
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={4}>
                     <div className="teacherContent">
-                        <img src="src/assets/img/instrutor9.jpg" alt="" />
+                        <img src={intrutor09} alt="" />
                         <h6>VueLo Gadi</h6>
                         <div className="textReviewRole">
                             <p>Chuyên gia lĩnh vực</p>
@@ -105,7 +111,7 @@ export default function Teacher() {
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={4}>
                     <div className="teacherContent">
-                        <img src="src/assets/img/instrutor10.jpg" alt="" />
+                        <img src={intrutor10} alt="" />
                         <h6>Hoàng Nam</h6>
                         <div className="textReviewRole">
                             <p>Chuyên gia lĩnh vực</p>
