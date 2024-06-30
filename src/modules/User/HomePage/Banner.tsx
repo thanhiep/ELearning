@@ -1,4 +1,5 @@
 import { Col, Row, Button } from "antd";
+import bannerELearning from "src/assets/img/bannerelearning.png"
 
 export default function Banner() {
   return (
@@ -24,7 +25,7 @@ export default function Banner() {
       <Col xs={24} lg={12}>
         <div className="bannerRight">
           <img
-            src="src/assets/img/bannerelearning.png"
+            src={bannerELearning}
             alt="banner"
             className="w-full"
           />
