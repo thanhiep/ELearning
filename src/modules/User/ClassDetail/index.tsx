@@ -89,6 +89,16 @@ export default function ClassDetail() {
           </Button>
         )
       }
+    } else {
+      return (
+        <Button
+          className="classRegisterBtn"
+          onClick={onSubmit}
+          disabled={isPending}
+        >
+          Đăng ký
+        </Button>
+      )
     }
   };
 
