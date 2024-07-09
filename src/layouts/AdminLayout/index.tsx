@@ -46,9 +46,9 @@ export default function AdminLayout() {
   return (
     <Layout className="h-screen">
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <Link to={"/admin"}>
+        <Link to={"/"}>
           <div className="h-[72px] my-1 text-white flex items-center justify-center">
-            <img src={logoELearning} width={55} className="cursor-pointer" />
+            <img src={logoELearning} width={150} className="cursor-pointer" />
           </div>
         </Link>
         <Menu
