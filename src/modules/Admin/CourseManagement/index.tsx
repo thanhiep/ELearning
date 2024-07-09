@@ -138,6 +138,10 @@ export default function CourseManagement() {
         queryKey: ["list-class-pagination", { currentPage }],
         type: "active",
       });
+      queryClient.refetchQueries({
+        queryKey:["class-list"],
+        type: "active",
+      })
     },
     onError: (error) => {
       console.log(error)

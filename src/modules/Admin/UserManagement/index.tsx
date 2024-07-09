@@ -95,6 +95,10 @@ export default function UserManagement() {
         queryKey: ["list-user-pagination", { currentPage }],
         type: "active",
       });
+      queryClient.refetchQueries({
+        queryKey: ["user-list"],
+        type: "active",
+      });
     },
     onError: (error) => {
       setIsAddUserFail(true);
