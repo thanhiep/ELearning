@@ -38,15 +38,12 @@ import { useAppSelector } from "../../../redux/hook";
 import { getUserApplyApi, getUserWaitToApplyApi } from "../../../apis/user";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import successIcon from "./../../../assets/img/successIcon.png"
-import failIcon from "./../../../assets/img/login-fail-icon.png"
+import successIcon from "./../../../assets/img/successIcon.png";
+import failIcon from "./../../../assets/img/login-fail-icon.png";
 
 const schema = yup.object({
   maKhoaHoc: yup.string(),
-  biDanh: yup
-    .string()
-    .required("(*) Vui lòng nhập bí danh")
-    .max(20, "(*) Tối đa 20 ký tự"),
+  biDanh: yup.string(),
   tenKhoaHoc: yup.string().required("(*) Vui lòng nhập tên khóa học"),
   moTa: yup.string().required("(*) Vui lòng nhập mô tả"),
   luotXem: yup
@@ -66,8 +63,7 @@ const schema = yup.object({
     .required("(*) Vui lòng nhập ngày tạo")
     .matches(DATE_REGEX, "(*) Ngày tạo phải theo định dạng DD/MM/YYYY"),
   maDanhMucKhoaHoc: yup.string().required("(*) Vui lòng chọn danh mục"),
-  taiKhoanNguoiTao: yup
-    .string()
+  taiKhoanNguoiTao: yup.string(),
 });
 
 export default function CourseManagement() {
@@ -139,12 +135,12 @@ export default function CourseManagement() {
         type: "active",
       });
       queryClient.refetchQueries({
-        queryKey:["class-list"],
+        queryKey: ["class-list"],
         type: "active",
-      })
+      });
     },
     onError: (error) => {
-      console.log(error)
+      console.log(error);
       setIsAddCourseFail(true);
     },
   });
@@ -157,6 +153,10 @@ export default function CourseManagement() {
       setIsDeleteSuccess(true);
       queryClient.refetchQueries({
         queryKey: ["list-class-pagination", { currentPage }],
+        type: "active",
+      });
+      queryClient.refetchQueries({
+        queryKey: ["class-list"],
         type: "active",
       });
     },
@@ -174,6 +174,10 @@ export default function CourseManagement() {
       setIsOpenModal(false);
       queryClient.refetchQueries({
         queryKey: ["list-class-pagination", { currentPage }],
+        type: "active",
+      });
+      queryClient.refetchQueries({
+        queryKey: ["class-list"],
         type: "active",
       });
     },
@@ -458,7 +462,7 @@ export default function CourseManagement() {
     formData.append("maNhom", formValues.maNhom);
     formData.append("ngayTao", formValues.ngayTao);
     formData.append("maDanhMucKhoaHoc", formValues.maDanhMucKhoaHoc);
-    
+
     if (dataEdit === undefined) {
       const newMaKhoaHoc = uuidv4();
       formValues.maKhoaHoc = newMaKhoaHoc;
@@ -466,7 +470,10 @@ export default function CourseManagement() {
       formData.append("maKhoaHoc", formValues.maKhoaHoc);
       handleAddCourse(formData);
     } else {
-      formData.append("taiKhoanNguoiTao", (dataEdit as KhoaHoc).nguoiTao.taiKhoan)
+      formData.append(
+        "taiKhoanNguoiTao",
+        (dataEdit as KhoaHoc).nguoiTao.taiKhoan
+      );
       formData.append("maKhoaHoc", (dataEdit as KhoaHoc).maKhoaHoc);
       handleUpdateCourse(formData);
     }
@@ -550,7 +557,6 @@ export default function CourseManagement() {
         </div>
       </div>
 
-
       <Modal
         title={dataEdit !== undefined ? "Chỉnh sửa khóa học" : "Thêm khóa học"}
         centered
@@ -583,6 +589,7 @@ export default function CourseManagement() {
                 Bí danh
               </label>
               <Controller
+                disabled
                 name="biDanh"
                 control={control}
                 render={({ field }) => {

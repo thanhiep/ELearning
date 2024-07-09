@@ -32,8 +32,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { acceptUserApi, cancelClassApi } from "../../../apis/class";
 import { SearchOutlined } from "@ant-design/icons";
 import { SCHEMA_USER_FORM } from "../../../constants/yupGlobal";
-import successIcon from "./../../../assets/img/successIcon.png"
-import failIcon from "./../../../assets/img/login-fail-icon.png"
+import successIcon from "./../../../assets/img/successIcon.png";
+import failIcon from "./../../../assets/img/login-fail-icon.png";
 
 export default function UserManagement() {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -63,7 +63,7 @@ export default function UserManagement() {
       hoTen: "",
       soDT: "",
       maLoaiNguoiDung: "",
-      maNhom: "GP01",
+      maNhom: "",
       email: "",
     },
     mode: `onChange`,
@@ -78,10 +78,10 @@ export default function UserManagement() {
   const dataSource = data?.items || [];
   const totalCount = data?.totalCount || 0;
 
-  const {data: userList} = useQuery({
-    queryKey:["user-list", {dataSource}],
+  const { data: userList } = useQuery({
+    queryKey: ["user-list", { dataSource }],
     queryFn: getUserListApi,
-  })
+  });
 
   const queryClient = useQueryClient();
 
@@ -116,6 +116,10 @@ export default function UserManagement() {
         queryKey: ["list-user-pagination", { currentPage }],
         type: "active",
       });
+      queryClient.refetchQueries({
+        queryKey: ["user-list"],
+        type: "active",
+      });
     },
     onError: () => {
       setIsDeleteFail(true);
@@ -130,6 +134,10 @@ export default function UserManagement() {
       setIsOpenModal(false);
       queryClient.refetchQueries({
         queryKey: ["list-user-pagination", { currentPage }],
+        type: "active",
+      });
+      queryClient.refetchQueries({
+        queryKey: ["user-list"],
         type: "active",
       });
     },
@@ -286,8 +294,7 @@ export default function UserManagement() {
                 setIsOpenModal(true);
                 setValue("taiKhoan", record.taiKhoan);
                 setValue("hoTen", record.hoTen);
-                setValue("soDT", record.soDT);
-                setValue("maNhom", record.maNhom);
+                setValue("soDT", record.soDt);
                 setValue("email", record.email);
                 setValue("maLoaiNguoiDung", record.maLoaiNguoiDung);
                 setValue("matKhau", record.matKhau);
@@ -345,7 +352,9 @@ export default function UserManagement() {
               okText={<span>OK</span>}
               cancelText="Huỷ"
             >
-              <Button type="primary" loading={acceptCoursePending}>Duyệt</Button>
+              <Button type="primary" loading={acceptCoursePending}>
+                Duyệt
+              </Button>
             </Popconfirm>
           </Space>
         </div>
@@ -404,6 +413,7 @@ export default function UserManagement() {
     if (dataEdit === undefined) {
       handleAddUser(formValues);
     } else {
+      formValues.taiKhoan = (dataEdit as UserAdd).taiKhoan;
       handleUpdateUser(formValues);
     }
   };
@@ -414,9 +424,9 @@ export default function UserManagement() {
     setCurrentPage(1);
   };
 
-  const dataSearch = userList?.filter((user)=>{
-    return user.hoTen.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
-  })
+  const dataSearch = userList?.filter((user) => {
+    return user.hoTen.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1;
+  });
   const totalCountSearch = dataSearch?.length;
 
   const startIndex = (currentPage - 1) * PAGE_SIZE;
@@ -471,7 +481,7 @@ export default function UserManagement() {
         />
         <div className="flex justify-center mt-4 pb-4">
           <Pagination
-          current={currentPage}
+            current={currentPage}
             defaultCurrent={currentPage}
             total={searchValue !== "" ? totalCountSearch : totalCount}
             pageSize={PAGE_SIZE}
@@ -503,6 +513,7 @@ export default function UserManagement() {
                 render={({ field }) => (
                   <>
                     <Input
+                      disabled={dataEdit !== undefined}
                       size="large"
                       className="mt-1"
                       placeholder="Tài khoản"
@@ -686,7 +697,12 @@ export default function UserManagement() {
               />
             </Col>
             <Col span={24} className="text-end mt-5">
-              <Button htmlType="submit" size="large" type="primary" loading={isPending}>
+              <Button
+                htmlType="submit"
+                size="large"
+                type="primary"
+                loading={isPending}
+              >
                 {dataEdit !== undefined ? "Cập nhật" : "Thêm người dùng"}
               </Button>
             </Col>
