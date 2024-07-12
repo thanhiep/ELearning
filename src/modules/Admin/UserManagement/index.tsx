@@ -200,6 +200,15 @@ export default function UserManagement() {
 
   const columns = [
     {
+      title: "STT",
+      key: "stt",
+      render: (_: any, __: any, index: number) => (
+        <Typography.Paragraph style={{ textAlign: "center" }} className="w-[50px]">
+          {index + 1 + (PAGE_SIZE*(currentPage-1))}
+        </Typography.Paragraph>
+      ),
+    },
+    {
       title: "Tài khoản",
       dataIndex: "taiKhoan",
       render: (taiKhoan: string) => (
@@ -478,6 +487,7 @@ export default function UserManagement() {
           pagination={false}
           scroll={{ x: 1280 }}
           loading={isLoading}
+          bordered
         />
         <div className="flex justify-center mt-4 pb-4">
           <Pagination

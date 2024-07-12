@@ -242,6 +242,15 @@ export default function CourseManagement() {
 
   const columns = [
     {
+      title: "STT",
+      key: "stt",
+      render: (_: any, __: any, index: number) => (
+        <Typography.Paragraph style={{ textAlign: "center" }} className="w-[50px]">
+          {index + 1 + (PAGE_SIZE*(currentPage-1))}
+        </Typography.Paragraph>
+      ),
+    },
+    {
       title: "Mã khóa học",
       dataIndex: "maKhoaHoc",
       render: (maKhoaHoc: string) => (
@@ -542,6 +551,7 @@ export default function CourseManagement() {
           pagination={false}
           scroll={{ x: 1280 }}
           loading={isLoading}
+          bordered
         />
         <div className="flex mt-4 pb-4 justify-center">
           <Pagination
