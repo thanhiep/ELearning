@@ -48,12 +48,10 @@ const schema = yup.object({
   moTa: yup.string().required("(*) Vui lòng nhập mô tả"),
   luotXem: yup
     .number()
-    .typeError("(*) Vui lòng nhập số")
-    .required("(*) Vui lòng nhập lượt xem"),
+    .typeError("(*) Vui lòng nhập số"),
   danhGia: yup
     .number()
     .typeError("(*) Vui lòng nhập một số từ 0 - 10")
-    .required("(*) Vui lòng nhập đánh giá từ 0 - 10")
     .min(0, "(*) Đánh giá phải từ 0 - 10")
     .max(10, "(*) Đánh giá phải từ 0 - 10"),
   maNhom: yup.string().required("(*) Vui lòng chọn mã nhóm"),
@@ -73,6 +71,8 @@ export default function CourseManagement() {
   const [fileList, setFileList] = useState([]);
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
   const [isAddCourseFail, setIsAddCourseFail] = useState(false);
+  const [isUpdateCourseFail, setIsUpdateCourseFail] = useState(false)
+
   const [searchValue, setSearchValue] = useState("");
 
   const [userDataWait, setUserDataWait] = useState([]);
@@ -182,6 +182,7 @@ export default function CourseManagement() {
       });
     },
     onError: (error) => {
+      setIsUpdateCourseFail(true)
       console.log(error);
     },
   });
@@ -1026,6 +1027,26 @@ export default function CourseManagement() {
           className="tryAgainBtn mt-5"
           onClick={() => {
             setIsAddCourseFail(false);
+          }}
+        >
+          Thử lại
+        </Button>
+      </Modal>
+
+      <Modal
+        title="Cập nhật khóa học không thành công"
+        open={isUpdateCourseFail}
+        footer={null}
+        className="authModal  loginModal"
+        closable={false}
+        centered
+      >
+        <img src={failIcon} alt="" />
+        <p>Đã có lỗi xảy ra, vui lòng thử lại sau.</p>
+        <Button
+          className="tryAgainBtn mt-5"
+          onClick={() => {
+            setIsUpdateCourseFail(false);
           }}
         >
           Thử lại
