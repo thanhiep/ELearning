@@ -434,7 +434,7 @@ export default function UserManagement() {
   };
 
   const dataSearch = userList?.filter((user) => {
-    return user.hoTen.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1;
+    return user.hoTen.toLowerCase().indexOf(searchValue.toLowerCase().trim()) !== -1;
   });
   const totalCountSearch = dataSearch?.length;
 

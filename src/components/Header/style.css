@@ -198,6 +198,18 @@
     }
   }
 
+  @media (max-width: 431px){
+    .header{
+        padding: 0 20px;
+    }
+    .authBtn{
+        margin: 0 16px;
+    }
+    .signupBtn{
+        display: none;
+    }
+  }
+
  @keyframes fadeInDown {
     0%{
         opacity: 0;

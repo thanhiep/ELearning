@@ -55,7 +55,7 @@ export default function LoginPage() {
 
   return (
     <div className="authForm">
-      <div className="w-[400px]">
+      <div className="w-[400px] loginForm">
         <div className="my-4 text-center">
           <Typography className="font-bold text-4xl">Đăng nhập</Typography>
           <Typography className="mt-2 text-lg">

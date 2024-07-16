@@ -53,3 +53,26 @@
 .registerModal .ant-modal-title{
     color: #41b294;
 }
+
+@media (max-width: 431px){
+    .authForm{
+        top: 35%;
+        padding: 30px;
+    }
+    .loginForm, .registerForm{
+        width: 300px !important;
+    }
+}
+
+@media (max-height: 431px){
+    .authForm{
+        padding: 0;
+        height: 430px;
+        overflow-y: auto;
+    }
+    .loginForm, .registerForm{
+        transform: scale(0.9);
+        padding: 0;
+        
+    }
+}
